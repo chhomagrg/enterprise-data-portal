@@ -1,0 +1,474 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #13113b;
+    padding: 1.2em;
+    color: white;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Logo */
+.logo img {
+    height: 60px;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.nav-links li {
+    display: inline;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.5s forwards ease-in-out;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5em 1em;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-size: 1.4em;
+}
+
+.nav-links a:hover {
+    color: #ddd;
+    transform: scale(1.1);
+}
+
+/* Active link styling */
+.nav-links .active {
+    background-color: #7993ee;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Login Button */
+#loginBtn, #logoutBtn {
+    background-color: #115a6a;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#loginBtn:hover, #logoutBtn:hover {
+    background-color: #9900ff;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(153, 0, 255, 0.5);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hamburger Menu Animation */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 60px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #13113b;
+        padding: 10px 0;
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards ease-in-out;
+    }
+
+    /* Move login button to bottom */
+    #loginBtn, #logoutBtn {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        text-align: center;
+        z-index: 1001;
+    }
+}
+
+/* Keyframes for Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Solar Insights Section */
+.solar-insights {
+    text-align: center;
+    padding: 5px;
+
+}
+
+.solar-insights h1 {
+    font-size: 2.5em;
+    color: #13113b;
+    margin-bottom: 5px; 
+}
+
+.solar-insights p {
+    margin: 3px 0 5px; 
+    color: #2C3E50;
+    font-size: 2em;
+    line-height: 1.2;
+}
+
+.slider {
+    width: 100%;
+    max-width: 100vw;
+    height: 700px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: max-content;
+    transition: 1s;
+}
+
+.list img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+}
+
+.buttons {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    border: none;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.dots li {
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.dots li.active {
+    width: 20px;
+    background-color: #000;
+    opacity: 1;
+}
+
+
+/* Images container */
+.images-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Style the first photo */
+.images-container img:first-of-type {
+    width: 100%;
+    height: 30%; 
+    object-fit: cover; 
+    border-radius: 8px;
+}
+
+/* Buttons container */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.buttons-container .explore-btn,
+.buttons-container .learn-more-btn {
+    background-color: #115a6a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons-container .explore-btn:hover,
+.buttons-container .learn-more-btn:hover {
+    background-color: rgb(27, 116, 204);
+}
+
+/* Style the second photo */
+.images-container img:last-of-type {
+    width: 100%;
+    height: 30%; 
+    object-fit: cover; 
+    border-radius: 8px;
+}
+
+/* Bottom Text Section */
+.bottom-text {
+    padding: 15px;
+    background-color: rgba(248, 246, 246, 0.79);
+    text-align: center;
+    font-size: 1.8em;
+    color: #2C3E50;
+    line-height: 1.6;
+}
+
+
+/* Footer styles */
+footer {
+    background-color: #13113b;
+    color: white;
+    padding: 1.4em;
+    font-size: 1.4em;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-left a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
+}
+
+.footer-right a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer-right a:hover {
+    opacity: 0.7;
+}
+
+.social-icon {
+    font-size: 20px;
+}
+
+
+
+
+#success-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #d4edda; 
+    color: #155724;
+    border-radius: 6px;
+}
+
+/* Hide modal by default */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Show modal when the 'show' class is added */
+.modal.show {
+    display: flex;
+}
+
+/* Modal content box */
+.modal-content {
+    background: #b3c6ff !important;
+    padding: 25px !important; 
+    width: 350px !important;
+    margin: auto !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Close button */
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 16px;
+}
+
+#authSubmitBtn, #registerSubmitBtn {
+    background: green;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#authSubmitBtn:hover, #registerSubmitBtn:hover {
+    background: darkgreen;
+}
+
+.message {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.hidden {
+    display: none;
+}

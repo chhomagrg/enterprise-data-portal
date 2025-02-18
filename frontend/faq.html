@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Enterprise Data Access Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/faq.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="images/logo.png" alt="MAXX ENERGY Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="data.html" id="dataLink">Data</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+    </ul>
+    <button id="loginBtn" class="btn">Login</button>
+    <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</nav>
+
+<main>
+    <section class="faq-section">
+        <h1 class="faq-title">Frequently Asked Questions</h1>
+        <p class="faq-description">Here are some of the most common questions asked about our platform and services. Use the search or categories to find specific questions quickly.</p>
+
+        <div class="faq-search-bar">
+            <input type="text" id="faqSearchInput" placeholder="Search FAQs..." onkeyup="searchFAQ()">
+            <i class="fas fa-search search-icon"></i> <!-- Search icon on the side -->
+        </div>
+
+        <!-- Category Buttons -->
+        <div class="faq-categories">
+            <button class="category-btn" data-category="general" onclick="filterFAQ('general')">General</button>
+            <button class="category-btn" data-category="account" onclick="filterFAQ('account')">Account Issues</button>
+            <button class="category-btn" data-category="data" onclick="filterFAQ('data')">Data Access</button>
+            <button class="category-btn" data-category="all" onclick="filterFAQ('all')">All</button>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="faq-container" id="faqList">
+            <div class="faq-item general">
+                <h2 class="question">What is the Enterprise Data Access Portal?</h2>
+                <p class="answer">The Enterprise Data Access Portal is a platform designed to provide real-time insights and data related to solar energy generation...</p>
+            </div>
+            <div class="faq-item general">
+                <h2 class="question">How do I contact customer support?</h2>
+                <p class="answer">If you need assistance, you can contact us through the 'Contact Us' link in the footer...</p>
+            </div>
+            <div class="faq-item account">
+                <h2 class="question">How do I log in to the platform?</h2>
+                <p class="answer">To log in, simply click the 'Login' button on the top right corner...</p>
+            </div>
+            <div class="faq-item data">
+                <h2 class="question">How can I track solar energy data?</h2>
+                <p class="answer">Once logged in, you can access solar energy data in the 'Data' section of the portal...</p>
+            </div>
+            <div class="faq-item general">
+                <h2 class="question">How do I change my password?</h2>
+                <p class="answer">To change your password, go to the 'Account Settings' page, click on 'Change Password', and follow the prompts to set a new one.</p>
+            </div>
+            <div class="faq-item general">
+                <h2 class="question">Is there a mobile app for the portal?</h2>
+                <p class="answer">Currently, there is no dedicated mobile app. However, the portal is mobile-responsive, so you can access it from any mobile device's browser.</p>
+            </div>
+            <div class="faq-item account">
+                <h2 class="question">Can I delete my account?</h2>
+                <p class="answer">Yes, you can delete your account by contacting customer support. They will guide you through the account deletion process.</p>
+            </div>
+            <div class="faq-item account">
+                <h2 class="question">How can I update my email address?</h2>
+                <p class="answer">You can update your email address by going to the 'Account Settings' section and modifying your contact details.</p>
+            </div>
+            <div class="faq-item data">
+                <h2 class="question">Can I analyze historical energy production data?</h2>
+                <p class="answer">Yes, the portal provides access to historical data, allowing you to analyze past energy production trends and compare them with real-time data.</p>
+            </div>
+            <div class="faq-item data">
+                <h2 class="question">What formats can I download my data in?</h2>
+                <p class="answer">You can download your solar energy data in various formats, including CSV, Excel, and PDF, from the 'Reports' section of the platform.</p>
+            </div>
+            <div class="faq-item data">
+                <h2 class="question">Can I get alerts for performance issues?</h2>
+                <p class="answer">Yes, you can set up email notifications or alerts within the portal to notify you of any performance issues or system downtimes.</p>
+            </div>
+            <div class="faq-item data">
+                <h2 class="question">Are there different levels of data access?</h2>
+                <p class="answer">Yes, the portal offers different levels of data access based on your account type. You may have restricted access or full access depending on your subscription.</p>
+            </div>
+        </div>
+
+
+        <footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            <a href="/privacy-policy">Privacy Policy</a> |
+            <a href="aboutus.html#contact">Contact Us</a>
+        </div>
+        <div class="footer-right">
+            <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="scripts/auth.js" defer></script>
+<script src="scripts/script.js" defer></script>
+<script src="scripts/faq.js"></script>
+
+
+</body>
+</html>

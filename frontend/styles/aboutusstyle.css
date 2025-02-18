@@ -1,0 +1,472 @@
+/* Global Styles */
+html, body {
+    background-color: white;  
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* CONTAINER & GRID SYSTEM */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.col-6 {
+    width: 50%;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .col-6 {
+        width: 100%;
+    }
+}
+
+/* TYPOGRAPHY */
+.fw-bold {
+    font-weight: bold;
+}
+
+/* HERO IMAGE */
+.hero-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    opacity: 0.5;
+    z-index: 0;
+}
+
+/* HERO SECTION */
+.hero-section {
+    height: 60vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(rgba(19, 17, 59, 0.7), rgba(19, 17, 59, 0.7)), url('images/Photo3.jpeg') no-repeat center center;
+    background-size: cover; 
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 17, 59, 0.7);
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* WHO WE ARE SECTION */
+.who-we-are {
+    background: #f8f8f8;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.who-we-are p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #13113b;
+}
+
+.who-we-are h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #13113b;
+}
+
+.who-we-are img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mission Section */
+.mission-section {
+    background: linear-gradient(135deg, #8398b6 0%, #13113b 100%);
+    padding: 60px 20px;
+    text-align: center; 
+}
+
+/* Heading */
+.mission-section h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fcfcfc;
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+/* Subheading */
+.mission-section p.lead {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+    text-align: center; 
+}
+
+/* Mission Item Section */
+.mission-item {
+    background: none;
+    border: none;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center; 
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+    padding-left: 20px;
+}
+
+.mission-item h3 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+    text-align: center; 
+}
+
+.mission-item p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+    text-align: center; 
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .mission-section h2 {
+        font-size: 3rem;
+    }
+
+    .mission-section p.lead {
+        font-size: 1.4rem;
+    }
+
+    .mission-item h3 {
+        font-size: 1.6rem;
+    }
+
+    .mission-item p {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* COMPANY HISTORY SECTION */
+/* Timeline Styles */
+.timeline {
+    list-style-type: none;
+    position: relative;
+    padding-left: 60px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    transition: all 0.3s ease-in-out;
+}
+
+.timeline-item .timeline-icon {
+    position: absolute;
+    left: -60px;
+    top: 0;
+    background-color: #13113b;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    opacity: 0.8;
+}
+
+.timeline-item:hover .timeline-content {
+    max-height: 1200px;
+}
+
+.timeline-item .timeline-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    margin-left: 40px;
+}
+
+.company-history h2.fw-bold {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #13113b;
+    border-bottom: 3px solid #f39c12;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.timeline-item h5 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 2.8rem;
+}
+
+.timeline-item p {
+    font-size: 1.8rem;
+}
+
+.timeline-item:hover .timeline-icon {
+    background-color: #f39c12;
+    transform: scale(1.2);
+}
+
+/* Icons */
+.fas {
+    font-size: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Add background color */
+.company-history {
+    background-color: #f4f4f4;
+    padding: 60px 0;
+}
+
+/* TEAM MEMBERS SECTION */
+.team-section {
+    background-color: #d3d3d3;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.team-section h2 {
+    font-size: 3rem;
+    color: #13113b;
+    margin-bottom: 30px;
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.team-member {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.team-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.role {
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* CONTACT SECTION */
+#contact {
+    background: linear-gradient(135deg, #8398b6 0%, #13113b 100%);
+    padding: 60px 20px;
+    margin: 40px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+#contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#contact form:hover {
+    transform: translateY(-5px);
+}
+
+#contact label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #13113b;
+    margin-bottom: 12px;
+}
+
+#contact input,
+#contact textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: #7993ee;
+    background-color: #eaf2ff;
+    outline: none;
+}
+
+#contact button {
+    width: 100%;
+    padding: 16px;
+    background-color: #115a6a;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#contact button:hover {
+    background-color: #13113b;
+    transform: scale(1.05);
+}
+
+/* Responsive Hero Section, Heading Sizes, and Timeline Typography */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 50vh; 
+    }
+
+    .hero-section h1,
+    .team-section h2,
+    .who-we-are h2,
+    #contact h2 {
+        font-size: 2.5rem;
+    }
+    .timeline-item h5 {
+        font-size: 2.2rem; 
+    }
+
+    .timeline-item p {
+        font-size: 1.4rem; 
+    }
+    .company-history h2.fw-bold {
+        font-size: 2.5rem; 
+    } 
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 40vh; 
+    }
+
+    .hero-section h1,
+    .team-section h2,
+    .mission-section h2,
+    .who-we-are h2,
+    #contact h2 {
+        font-size: 2rem;
+    }
+    .timeline-item h5 {
+        font-size: 1rem; 
+    }
+
+    .timeline-item p {
+        font-size: 1.2rem; 
+    }
+    .company-history h2.fw-bold {
+        font-size: 2rem; 
+    } 
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 30vh; 
+    }
+
+    .hero-section h1,
+    .team-section h2,
+    .mission-section h2,
+    .who-we-are h2,
+    #contact h2 {
+        font-size: 1.6rem; 
+    }
+    .timeline-item h5 {
+        font-size: 1.2rem; 
+    }
+
+    .timeline-item p {
+        font-size: 0.8rem; 
+    }
+    .company-history h2.fw-bold {
+        font-size: 1.6rem; 
+    } 
+}

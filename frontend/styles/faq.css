@@ -1,0 +1,201 @@
+/* FAQ Section Styling */
+.faq-section {
+    background-color: #f4f6fb;
+    padding: 50px 20px;
+    text-align: center;
+    color: #13113b;
+}
+
+/* Title Styling */
+.faq-title {
+    font-size: 3.8em;
+    margin-bottom: 20px;
+    color: #2C3E50;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-title:hover {
+    color: #115a6a;
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Description Styling */
+.faq-description {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+    font-weight: 300;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Apply show class to trigger fade-in */
+.faq-description.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FAQ Container */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    align-items: center; /* Center the FAQ items */
+}
+
+/* FAQ Item Styling */
+.faq-item {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.faq-item.show {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Question Styling */
+.faq-item .question {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #115a6a;
+    margin-bottom: 10px;
+}
+
+/* Answer Styling */
+.faq-item .answer {
+    font-size: 1.1em;
+    color: #2C3E50;
+    line-height: 1.6;
+}
+
+/* FAQ Item Hover Effects */
+.faq-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.03);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Search Bar Styling */
+.faq-search-bar {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 40px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.faq-search-bar input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+    font-size: 1.2em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.faq-search-bar input:focus {
+    border-color: #115a6a;
+}
+
+.faq-search-bar .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #115a6a;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.faq-search-bar input:focus + .search-icon {
+    color: #2C3E50;
+}
+
+/* Category Buttons Styling */
+.faq-categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.faq-categories .category-btn {
+    background-color: #f4f6fb;
+    border: 1px solid #ddd;
+    padding: 12px 20px;
+    margin: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #115a6a;
+    transition: all 0.3s ease;
+}
+
+/* Category Button Hover Effect */
+.faq-categories .category-btn:hover {
+    background-color: #115a6a;
+    color: white;
+}
+
+/* Active Category Button */
+.faq-categories .category-btn.active {
+    background-color: #115a6a;
+    color: white;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 30px 15px;
+    }
+
+    .faq-title {
+        font-size: 3.5em;
+    }
+
+    .faq-container {
+        gap: 20px;
+    }
+
+    .faq-item {
+        padding: 15px;
+    }
+
+    .faq-item .question {
+        font-size: 1.6em;
+    }
+
+    .faq-item .answer {
+        font-size: 1em;
+    }
+}
