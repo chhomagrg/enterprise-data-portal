@@ -4,9 +4,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     // **Highlight Active Navigation Link**
     const navLinks = document.querySelectorAll(".nav-links a");
+
     navLinks.forEach(link => {
+        // Check if the href of the link matches the current page URL
         if (link.href === window.location.href) {
             link.classList.add("active");
+        } else {
+            link.classList.remove("active"); // Ensures only one is active at a time
         }
     });
 
@@ -36,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function reloadSlider() {
+        list.style.transition = 'left 0.5s ease-in-out'; // Smooth transition
         let checkLeft = items[active].offsetLeft;
         list.style.left = -checkLeft + 'px';
 
@@ -63,9 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!token) {
                 authModal.classList.add("show"); // Show login modal
                 document.getElementById("authForm").addEventListener("submit", function () {
-                    setTimeout(() => {
-                        window.location.href = "data.html";
-                    }, 2000);
+                    window.location.href = "data.html"; // Redirect immediately
                 });
             } else {
                 window.location.href = "data.html"; // If logged in, go directly
@@ -79,22 +82,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // **Hamburger Menu for Mobile**
-    const hamburger = document.querySelector('.hamburger');
-    const navLinksMenu = document.querySelector('.nav-links');
+    // **Hamburger Menu Functionality**
+    const hamburger = document.querySelector(".hamburger");
+    const navLinksContainer = document.querySelector(".nav-links");
 
-    hamburger.addEventListener('click', () => {
-        navLinksMenu.classList.toggle('active');
-    });
+    if (hamburger && navLinksContainer) {
+        hamburger.addEventListener("click", () => {
+            navLinksContainer.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+    }
 });
-document.addEventListener('scroll', function() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach(item => {
-        if (item.getBoundingClientRect().top < window.innerHeight - 100) {
-            item.classList.add('visible');
-        }
-    });
-});
+
 
 function showDetails(type) {
     let details = document.getElementById('details');

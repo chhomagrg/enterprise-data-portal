@@ -65,3 +65,14 @@ categoryButtons.forEach((btn) => {
 });
 
 filterFAQ('all');
+
+// Select the hamburger and navigation menu
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+// Add click event listener to the hamburger menu
+hamburger.addEventListener("click", () => {
+    // Toggle the "active" class on both elements
+    navLinks.classList.toggle("active");
+    hamburger.classList.toggle("active");
+});
