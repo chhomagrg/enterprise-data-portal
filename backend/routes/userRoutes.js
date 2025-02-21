@@ -25,7 +25,6 @@ router.post("/register", async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: "Email already in use." });
         }
-
         // Hash password before storing in DB
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ name, email, password: hashedPassword });

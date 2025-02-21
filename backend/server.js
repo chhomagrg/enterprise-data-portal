@@ -9,6 +9,7 @@ const dataRoutes = require("./routes/dataRoutes"); // Import data routes
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", userRoutes);
 app.use("/api/data", dataRoutes); // Register data routes
