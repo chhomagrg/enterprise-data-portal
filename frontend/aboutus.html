@@ -36,6 +36,7 @@
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit" id="authSubmitBtn">Login</button>
         </form>
+        
         <p id="toggleAuth">Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
     </div>
 </div>
@@ -262,15 +263,58 @@
 <!-- Contact Section -->
 <section id="contact">
     <h2>Get in touch</h2>
-    <form id="contact-form" action="https://formspree.io/f/xkgozjrz" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
+    <div class="contact-wrapper">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <form id="contact-form" action="https://formspree.io/f/xzzdlbgn" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+ <!-- Contact Information Card -->
+ <div class="contact-info">
+    <div class="contact-card">
+      <div class="contact-item">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Address</h3>
+          <p>123 Main Street,<br>City, Country</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Phone</h3>
+          <p>(123) 456-7890</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Email</h3>
+          <p>support@maxxenergy.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Business Hours</h3>
+          <p>Mon - Fri: 9:00 AM - 5:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 </section>
 
 <script src="scripts/contact.js" defer></script>

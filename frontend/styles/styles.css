@@ -27,7 +27,6 @@ body {
     background-color: #13113b;
     padding: 1.2em;
     color: white;
-    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
@@ -175,6 +174,17 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Ensure the button is not hidden or overlapped on mobile */
+@media (max-width: 768px) {
+    .login-button {
+        display: block !important;
+        width: 100%; /* or adjust as necessary */
+        margin: 10px 0; /* to create space around it */
+        visibility: visible;
+        opacity: 1;
     }
 }
 
@@ -328,6 +338,7 @@ body {
 
 /* Bottom Text Section */
 .bottom-text {
+    margin-top: 50px;
     padding: 15px;
     background-color: rgba(248, 246, 246, 0.79);
     text-align: center;

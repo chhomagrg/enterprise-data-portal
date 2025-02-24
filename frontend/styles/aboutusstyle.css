@@ -398,6 +398,79 @@ html, body {
     background-color: #13113b;
     transform: scale(1.05);
 }
+.success-message {
+    display: none;
+    background-color: #28a745;
+    color: white;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+.success-message.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Flex Container to Position Form and Card Side by Side */
+.contact-wrapper {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap; /* Stacks elements on smaller screens */
+    justify-content: center;
+}
+
+
+#contact form,
+.contact-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+/* Contact Information Card Styles */
+.contact-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Add a subtle hover effect on the card */ 
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Styles for individual contact items within the card */
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    margin-right: 1rem;
+    color: #13113b;
+}
+
+.contact-details h3 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    color: #13113b;
+}
+
+.contact-details p {
+    margin: 0;
+    color: #666;
+}
+
 
 /* Responsive Hero Section, Heading Sizes, and Timeline Typography */
 @media (max-width: 1024px) {
