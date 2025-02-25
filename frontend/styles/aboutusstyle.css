@@ -583,13 +583,3 @@ html, body {
     }
 }
 
-/* Ensure the button is not hidden or overlapped on mobile */
-@media (max-width: 768px) {
-    .login-button {
-        display: block !important;
-        width: 100%; /* or adjust as necessary */
-        margin: 10px 0; /* to create space around it */
-        visibility: visible;
-        opacity: 1;
-    }
-}

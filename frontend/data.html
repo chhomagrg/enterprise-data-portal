@@ -4,808 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="styles/styles.css">
     <script>
         document.addEventListener("DOMContentLoaded", async function () {
             const token = localStorage.getItem("token");
 
             if (!token) {
                 alert("Access Denied! Please log in.");
-                window.location.href = "index.html"; // Redirect unauthorized users
+                window.location.href = "index.html";
                 return;
             }
 
             try {
                 const response = await fetch("http://localhost:5000/api/data/protected-data", {
                     method: "GET",
-                    headers: {
-                        "Authorization": `Bearer ${token}` 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
-                    }
+                    headers: { "Authorization": `Bearer ${token}` }
                 });
-
+                
                 const data = await response.json();
                 if (response.ok) {
-                    document.getElementById("data-content").innerHTML = `
-                        <p>${data.message}</p>
-                        <p><strong>User:</strong> ${data.user.email}</p>
-                    `;
+                    displayData(data);
                 } else {
                     alert(data.message || "Failed to fetch data.");
-                    window.location.href = "index.html"; // Redirect unauthorized users
+                    window.location.href = "index.html";
                 }
             } catch (error) {
                 console.error("Error:", error);
                 alert("An error occurred while fetching data.");
             }
         });
+
+        function displayData(data) {
+            document.getElementById("data-summary").innerHTML = `
+                <p><strong>User:</strong> ${data.user.email}</p>
+                <p><strong>Data Points:</strong> ${data.records.length}</p>
+            `;
+
+            const table = document.getElementById("data-table");
+            data.records.forEach(record => {
+                let row = table.insertRow();
+                row.insertCell(0).innerText = record.date;
+                row.insertCell(1).innerText = record.value;
+            });
+
+            renderChart(data.records);
+        }
+
+        function renderChart(records) {
+            const ctx = document.getElementById("dataChart").getContext("2d");
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: records.map(r => r.date),
+                    datasets: [{
+                        label: "Data Values",
+                        data: records.map(r => r.value),
+                        borderColor: "#007bff",
+                        backgroundColor: "rgba(0, 123, 255, 0.2)",
+                        fill: true
+                    }]
+                }
+            });
+        }
     </script>
     <style>
         body {
@@ -815,7 +76,27 @@
             padding: 0;
             text-align: center;
         }
-
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+        }
+        .nav-links li {
+            display: inline;
+            margin: 0 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
         .dashboard-image {
             display: block;
             margin: 20px auto;
@@ -860,38 +141,28 @@
         <button id="logoutBtn" class="btn">Logout</button>
     </nav>
 
-    <!-- Protected Data Content -->
-    <h1>Welcome to the Data Page</h1>
-    <div id="data-content"></div> <!-- Protected Data will load here -->
+    <main>
+        <h1>Data Dashboard</h1>
+        <p>Explore real-time solar energy data and insights.</p>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const logoutBtn = document.getElementById("logoutBtn");
-            if (logoutBtn) {
-                logoutBtn.addEventListener("click", function () {
-                    localStorage.removeItem("token");
-                    alert("Logged out successfully!");
-                    window.location.href = "index.html"; // Redirect to login page
-                });
-            }
-        });
-    </script>
+        <img src="images/plant5chart.png" alt="Dashboard Overview" class="dashboard-image">
 
-    <script src="auth.js" defer></script>
-    <script src="script.js" defer></script>  
+        <div id="data-summary"></div>
+
+        <h2>Data Records</h2>
+        <table id="data-table">
+            <tr>
+                <th>Date</th>
+                <th>Value</th>
+            </tr>
+        </table>
+
+        <img src="img" alt="Data Records Visualization" class="dashboard-image">
+
+        <h2>Data Visualization</h2>
+        <canvas id="dataChart" width="400" height="200"></canvas>
+
+        <img src="in"g alt="Chart Overview" class="dashboard-image">
+    </main>
 </body>
- <!-- Footer -->
- <footer>
-    <div class="footer-container">
-        <div class="footer-left">
-            <a href="/privacy-policy">Privacy Policy</a> |
-            <a href="#contact">Contact Us</a>
-        </div>
-        <div class="footer-right">
-            <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
- </footer>
 </html>

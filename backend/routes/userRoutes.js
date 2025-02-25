@@ -16,6 +16,7 @@ router.post("/register", async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
+        // Validate input
         if (!name || !email || !password) {
             return res.status(400).json({ message: "All fields are required." });
         }
@@ -25,6 +26,7 @@ router.post("/register", async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: "Email already in use." });
         }
+
         // Hash password before storing in DB
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ name, email, password: hashedPassword });
@@ -46,6 +48,7 @@ router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
 
+        // Validate input
         if (!email || !password) {
             return res.status(400).json({ message: "Email and password are required." });
         }
@@ -101,6 +104,42 @@ router.get("/all", authMiddleware, async (req, res) => {
         res.json(users);
     } catch (error) {
         console.error("Error fetching users:", error);
+        res.status(500).json({ message: "Server error. Please try again.", error: error.message });
+    }
+});
+
+/**
+ * @route   PUT /api/users/profile
+ * @desc    Update user profile
+ * @access  Private (Requires JWT)
+ */
+router.put("/profile", authMiddleware, async (req, res) => {
+    try {
+        const { username, bio, company, profilePicture } = req.body;
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found." });
+        }
+
+        // Optional fields check
+        if (username) {
+            user.username = username;
+        }
+        if (bio) {
+            user.bio = bio;
+        }
+        if (company) {
+            user.company = company;
+        }
+        if (profilePicture) {
+            user.profilePicture = profilePicture; // Here you can add file validation if needed
+        }
+
+        await user.save();
+        res.json({ message: "Profile updated successfully!", user });
+    } catch (error) {
+        console.error("Profile update error:", error);
         res.status(500).json({ message: "Server error. Please try again.", error: error.message });
     }
 });

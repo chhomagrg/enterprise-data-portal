@@ -1,3 +1,23 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
 /* Navbar Styling */
 .navbar {
     display: flex;
@@ -6,16 +26,18 @@
     background-color: #13113b;
     padding: 1.2em;
     color: white;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     transition: background-color 0.3s ease-in-out;
 }
 
-/* Logo */
 .logo img {
     height: 60px;
 }
 
-/* Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -24,10 +46,7 @@
 }
 
 .nav-links li {
-    display: inline;
-    opacity: 0;
-    transform: translateY(-10px);
-    animation: fadeIn 0.5s forwards ease-in-out;
+    display: inline-block;
 }
 
 .nav-links a {
@@ -50,6 +69,95 @@
     font-weight: bold;
 }
 
+/* Login Button */
+#loginBtn, #logoutBtn {
+    background-color: #115a6a;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#loginBtn:hover, #logoutBtn:hover {
+    background-color: #9900ff;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(153, 0, 255, 0.5);
+}
+
+/* Hamburger Menu (Hidden by Default) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease-in-out;
+}
+
+.bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.2em;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #13113b;
+        padding: 15px 0;
+        display: none;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 15px 0;
+        display: block;
+    }
+
+    #loginBtn, #logoutBtn {
+        width: 90%;
+        text-align: center;
+        margin-top: 15px;
+    }
+}
+
+
+/* User profile page */
 body {
     background: #f5f5f5;
     margin-top: 20px;

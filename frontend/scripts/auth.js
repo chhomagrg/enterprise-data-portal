@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const showRegisterBtn = document.getElementById("showRegister");
     const showLoginBtn = document.getElementById("showLogin");
 
+    // Profile section
+    const profileSection = document.getElementById("profileSection");
+
     // Message Elements
     const loginMessage = document.getElementById("loginMessage");
     const registerMessage = document.getElementById("registerMessage");
@@ -20,14 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkAuthStatus() {
         const token = localStorage.getItem("token");
 
+        // Check if the user is logged in
         if (token) {
+            // Show profile and logout button, hide login button
             if (loginBtn) loginBtn.style.display = "none";
             if (logoutBtn) logoutBtn.style.display = "inline-block";
             if (dataLink) dataLink.href = "data.html"; // Allow access to data page
+            if (profileSection) profileSection.style.display = "block"; // Show profile section
         } else {
+            // Hide profile section and logout button, show login button
             if (loginBtn) loginBtn.style.display = "inline-block";
             if (logoutBtn) logoutBtn.style.display = "none";
             if (dataLink) dataLink.href = "#"; // Restrict access if not logged in
+            if (profileSection) profileSection.style.display = "none"; // Hide profile section
         }
     }
 
@@ -173,11 +181,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Handle Registration
     if (registrationForm) {
         registrationForm.addEventListener("submit", async function (event) {
             event.preventDefault();
     
-            // Use the correct input IDs from the HTML
             const name = document.querySelector("#registrationForm #name").value;
             const email = document.querySelector("#registrationForm #registerEmail").value;
             const password = document.querySelector("#registrationForm #registerPassword").value;
@@ -201,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         registerModal.style.display = "none";
                         authModal.style.display = "block";
                         clearInputs(registrationForm); // Clear form fields
-                    }, 2000);
+                    }, 5000);
                 } else {
                     // Display error message for registration failure
                     registerMessage.textContent = data.message || "Registration failed. Please try again.";
@@ -212,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     setTimeout(() => {
                         registerMessage.style.display = "none"; // Hide error message after 3 seconds
                         clearInputs(registrationForm); // Clear the form if needed
-                    }, 3000); 
+                    }, 5000); 
                 }
             } catch (error) {
                 registerMessage.textContent = "An error occurred. Please try again.";
@@ -223,13 +231,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(() => {
                     registerMessage.style.display = "none"; // Hide error message after 3 seconds
                     clearInputs(registrationForm); // clear the form 
-                }, 3000);
+                }, 5000);
             }
         });
     }
-    
 
-
-
-    checkAuthStatus(); // Run on page load to check auth status
+    // Run the checkAuthStatus function on page load
+    checkAuthStatus();
 });
