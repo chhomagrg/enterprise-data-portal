@@ -30,12 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (logoutBtn) logoutBtn.style.display = "inline-block";
             if (dataLink) dataLink.href = "data.html"; // Allow access to data page
             if (profileSection) profileSection.style.display = "block"; // Show profile section
+            if (profileLink) profileLink.style.display = "inline-block";  // Show profile icon
         } else {
             // Hide profile section and logout button, show login button
             if (loginBtn) loginBtn.style.display = "inline-block";
             if (logoutBtn) logoutBtn.style.display = "none";
             if (dataLink) dataLink.href = "#"; // Restrict access if not logged in
             if (profileSection) profileSection.style.display = "none"; // Hide profile section
+            if (profileLink) profileLink.style.display = "none";  // Hide profile icon
         }
     }
 
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Open Login Modal When Clicking "Data" Tab if Not Logged In
     if (dataLink) {
         dataLink.addEventListener("click", function (event) {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token");   
             if (!token) {
                 event.preventDefault(); // Stop navigation
                 authModal.style.display = "block"; // Show login modal
@@ -133,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     localStorage.setItem("token", data.token);
 
-                    loginMessage.textContent = "Login successful! Redirecting...";
+                    loginMessage.textContent = "Login successful!";
                     loginMessage.classList.add("success");
                     loginMessage.classList.remove("error");
                     loginMessage.style.display = "block";
@@ -142,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         authModal.style.display = "none";
                         clearInputs(authForm);
                         checkAuthStatus();
-                        window.location.href = "data.html"; // Redirect to data page
                     }, 3000);
                 } else {
                     loginMessage.textContent = data.message || "Invalid email or password.";
@@ -218,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     registerMessage.style.display = "block";
     
                     setTimeout(() => {
-                        registerMessage.style.display = "none"; // Hide error message after 3 seconds
+                        registerMessage.style.display = "none"; // Hide error message after 5 seconds
                         clearInputs(registrationForm); // Clear the form if needed
                     }, 5000); 
                 }
@@ -229,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 registerMessage.style.display = "block";
     
                 setTimeout(() => {
-                    registerMessage.style.display = "none"; // Hide error message after 3 seconds
+                    registerMessage.style.display = "none"; // Hide error message after 5 seconds
                     clearInputs(registrationForm); // clear the form 
                 }, 5000);
             }

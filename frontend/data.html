@@ -128,17 +128,31 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
             <img src="images/logo.png" alt="MAXX ENERGY Logo">
+
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="data.html">Data</a></li>
+            <li><a href="data.html" id="dataLink">Data</a></li>
             <li><a href="faq.html">FAQ</a></li>
+            <li><a href="userProfile.html" id="profileLink"><i class="fas fa-user"></i></a></li>
         </ul>
-        <button id="logoutBtn" class="btn">Logout</button>
+
+       <!-- Login/Logout Button -->
+        <button id="loginBtn" class="btn">Login</button>
+        <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
+        
+        <!-- Hamburger Menu -->
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    
     </nav>
 
     <main>
