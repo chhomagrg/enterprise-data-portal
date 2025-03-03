@@ -45,9 +45,15 @@
 
 <main>
     <h1>Data Dashboard</h1>
-    <p>Explore real-time solar energy data and insights.</p>
-
-
+    <section class="overview">
+        <h2>Overview</h2>
+        <p>
+            This dashboard provides real-time insights into Maxx Energy's solar energy generation 
+            and efficiency. It visualizes power output, energy yield, and performance 
+            across different plants.
+        </p>
+    </section>
+    
     <!-- Chart Section -->
     <div class="dashboard-grid">
         <div class="card">
@@ -59,64 +65,67 @@
             <div id="chart-plant6"></div>
         </div>
     </div>
-
-    <!-- Tableau Embedded Dashboard -->
-     <div class="tableau-wrapper">
-        <div class="tableau-container">
-            <div class='tableauPlaceholder' id='vizContainer' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt='Dashboard' src='https://public.tableau.com/static/images/Vi/Visuals1_17410175283500/Dashboard2/1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                    <param name='embed_code_version' value='3' />
-                    <param name='site_root' value='' />
-                    <param name='name' value='Visuals1_17410175283500/Dashboard2' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https://public.tableau.com/static/images/Vi/Visuals1_17410175283500/Dashboard2/1.png' />
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='en-US' />
-                    <param name='filter' value='publish=yes' />
-                </object>
-            </div>
-            <script type='text/javascript'>
-                var divElement = document.getElementById('vizContainer');
-                var vizElement = divElement.getElementsByTagName('object')[0];
-                if (divElement.offsetWidth > 800) {
-                    vizElement.style.minWidth='1200px'; 
-                    vizElement.style.maxWidth='1220px';
-                    vizElement.style.width='100%';
-                    vizElement.style.minHeight='627px'; 
-                    vizElement.style.maxHeight='887px';
-                    vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
-                } else if (divElement.offsetWidth > 500) {
-                    vizElement.style.minWidth='1200px'; 
-                    vizElement.style.maxWidth='1220px';
-                    vizElement.style.width='100%'; 
-                    vizElement.style.minHeight='627px';
-                    vizElement.style.maxHeight='887px';
-                    vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
-                } else {
-                    vizElement.style.width='100%'; 
-                    vizElement.style.height='1327px';
-                }  
-                var scriptElement = document.createElement('script');
-                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                vizElement.parentNode.insertBefore(scriptElement, vizElement);
-            </script>
-          
+    
+    <div class="insights-wrapper">
+        <div class="key-insights-card">
+            <h3><i class="fas fa-lightbulb"></i> Key Insights</h3>
+            <p><strong>Plant 5</strong> average DC power output: <strong>3147.7 W</strong></p>
+            <p><strong>Plant 5</strong> average AC power output: <strong>307.8 W</strong></p>
+            <p><strong>Plant 6</strong> average DC power output: <strong>248.3 W</strong></p>
+            <p><strong>Plant 6</strong> average AC power output: <strong>242.8 W</strong></p>
+        </div>
+    
+        <div class="insight-card">
+            <h3><i class="fas fa-bolt"></i> Higher Power Output</h3>
+            <p><strong>Plant 5</strong> produces <strong>12x more power</strong> than Plant 6.</p>
         </div>
     </div>
     
+    
+    <div class="download-section">
+        <p>Download the raw energy data for further analysis:</p>
+        <a href="./data/maxx_energy_data.xlsx" class="download-btn" download> Download Data</a>
+    </div>
+
+
+    <!-- Tableau Embedded Dashboard -->
+    <div class='tableauPlaceholder' id='vizContainer' style='width: 100%; height: auto;'>
+        <noscript>
+            <a href='#'>
+                <img alt='Dashboard 2'
+                    src='https://public.tableau.com/static/images/Vi/Visuals1_17410175283500/Dashboard2/1_rss.png' 
+                    style='border: none' />
+            </a>
+        </noscript>
+        <object class='tableauViz' width='100%' height='100%'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='Visuals1_17410175283500/Dashboard2' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' 
+                value='https://public.tableau.com/static/images/Vi/Visuals1_17410175283500/Dashboard2/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+            <param name='filter' value='publish=yes' />
+        </object>
+    </div>
+
+
 </main>
+<br>
+<br>
 
-
-
+<section class="contact">
+    <h2>Need More Information?</h2>
+    <p>If you have any questions about this data, feel free to reach out.</p>
+    <a href="aboutus.html#contact" class="contact-btn">Contact Us</a>
+</section>
 
     <script src="//code.tidio.co/pkunvsvycx7yt48uj2pce4avlqbf1ycj.js" async></script>
     <script src="scripts/script.js" ></script>
