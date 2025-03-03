@@ -94,12 +94,6 @@ fetch("./data/maxx_energy_data.xlsx")
             marker: { color: '#d62728' }
         };
 
-        // Define the Grand Total values for Plant 5 & Plant 6
-var grandTotalPlant5DC = 3147.426211;
-var grandTotalPlant5AC = 307.8027523;
-
-var grandTotalPlant6DC = 246.70196088761864;
-var grandTotalPlant6AC = 241.27782520062243;
 
 // Define layout for Plant 5
 var layoutPlant5 = {
@@ -111,21 +105,6 @@ var layoutPlant5 = {
     margin: { l: 50, r: 30, t: 80, b: 150 },
     legend: { orientation: "h", x: 0.5, xanchor: "center", y: 1.2 },
 
-    // Annotation for Grand Total (Top Left)
-    annotations: [{
-        xref: "paper",
-        yref: "paper",
-        x: 0,
-        y: 1.25,
-        text: `<b>Grand Total:</b> <br> DC: ${grandTotalPlant5DC.toFixed(2)} <br> AC: ${grandTotalPlant5AC.toFixed(2)}`,
-        showarrow: false,
-        font: { size: 16, color: "#333" },
-        align: "left",
-        bgcolor: "#AEC6CF",
-        bordercolor: "#ccc",
-        borderwidth: 1,
-        borderpad: 5,
-    }]
 };
 
 // Define layout for Plant 6 
@@ -138,29 +117,12 @@ var layoutPlant6 = {
     margin: { l: 50, r: 30, t: 80, b: 150 },
     legend: { orientation: "h", x: 0.5, xanchor: "center", y: 1.2 },
 
-    // Annotation for Grand Total in Plant 6
-    annotations: [{
-        xref: "paper",
-        yref: "paper",
-        x: 0,
-        y: 1.25,
-        text: `<b>Grand Total:</b> <br> DC: ${grandTotalPlant6DC.toFixed(2)} <br> AC: ${grandTotalPlant6AC.toFixed(2)}`,
-        showarrow: false,
-        font: { size: 16, color: "#333" },
-        align: "left",
-        bgcolor: "#AEC6CF",
-        bordercolor: "#ccc",
-        borderwidth: 1,
-        borderpad: 5,
-    }]
 };
 
 // Plot the charts
 Plotly.newPlot('chart-plant5', [traceDCPlant5, traceACPlant5], layoutPlant5);
 Plotly.newPlot('chart-plant6', [traceDCPlant6, traceACPlant6], layoutPlant6);
-
-        
+      
     })
-    .catch(error => {
-        console.error("Error fetching the Excel file:", error);
-    });
+    
+
