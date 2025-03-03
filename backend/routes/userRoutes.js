@@ -125,11 +125,20 @@ router.put("/profile", authMiddleware, async (req, res) => {
 
         // Check if the email is being updated and ensure the new email isn't taken
         if (email && email !== user.email) {
+            //  Validate the email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic regex to check if email contains @
+            if (!emailRegex.test(email)) {
+                return res.status(400).json({ message: "Please provide a valid email address." });
+            }
+
+            // Check if email is already taken by another user
             const emailExists = await User.findOne({ email });
-            if (emailExists) {
+            if (emailExists && emailExists._id.toString() !== user._id.toString()) {
                 return res.status(400).json({ message: "Email is already in use." });
             }
-            user.email = email;  // Update email
+
+            // If email is valid and not taken, update it
+            user.email = email;
         }
 
         // Only validate and update avatar if it's provided

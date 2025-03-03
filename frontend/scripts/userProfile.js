@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("saveChangesBtn").style.display = "inline-block";
 
         // Show the "Choose Avatar" option
-        document.getElementById("chooseAvatarBtn").style.display = "inline-block";  
+        document.getElementById("chooseAvatarBtn").style.display = "inline-block";   
     });
 
     let selectedAvatar = '';
@@ -116,6 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Hide the message after 5 seconds
             setTimeout(() => {
                 messageContainer.style.display = "none";
+
+
+
+                
             }, 5000);
 
             // Hide the Save Changes button and show the Update Profile button

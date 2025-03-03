@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'frontend' directory
 app.use("/images", express.static(path.join(__dirname, "../frontend/images")));
+app.use("/data", express.static(path.join(__dirname, "../frontend/data"))); // Serve data folder for Excel File
 
 app.use("/api/users", userRoutes);
 app.use("/api/data", dataRoutes);
@@ -27,3 +28,4 @@ mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/max_energy"
 
 app.listen(5000, () => console.log("Server running on port 5000"));
 
+ 

@@ -1,3 +1,8 @@
+main {
+    padding-top: 200px; 
+    text-align: center;
+}
+
 /* Title Styling */
 .faq-title {
     font-size: 3.2em; /* Smaller font size */
@@ -43,10 +48,10 @@
 .faq-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Reduced gap */
-    max-width: 750px; /* Reduced max-width */
+    gap: 20px; 
+    max-width: 750px; 
     margin: 0 auto;
-    margin-bottom: 80px; /* Reduced bottom margin */
+    margin-bottom: 80px; 
     align-items: center;
 }
 
