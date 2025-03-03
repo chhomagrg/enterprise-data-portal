@@ -194,6 +194,28 @@ p {
     #chart-plant5, #chart-plant6 {
         min-height: 550px;
     }
+    
+    .overview {
+        width: 90%;
+        max-width: 95%;
+        margin: 20px auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .key-insights-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .key-insights-card, .insight-card {
+        width: 90%;
+        max-width: 95%;
+        margin: 10px auto;
+        text-align: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -205,8 +227,26 @@ p {
     h2 {
         font-size: 1.8rem;
     }
-    .key-insights-card {
+
+
+    .overview {
         width: 90%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .key-insights-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .key-insights-card, .insight-card {
+        width: 95%;
+        max-width: 100%;
+        margin: 15px auto;
+        text-align: center;
     }
 }
 
@@ -218,8 +258,51 @@ p {
     h2 {
         font-size: 1.6rem;
     }
-    .key-insights-container {
+
+    .overview {
+        width: 95%;
+        max-width: 100%;
+        text-align: center;
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
+
+    .key-insights-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .key-insights-card, .insight-card {
+        width: 100%;
+        text-align: center;
+        margin: 20px auto;
+    }
 }
+
+.tableau-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 12px; 
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.tableau-container iframe {
+    width: 100%;
+    min-height: 500px;
+    height: 75vh;
+    border: none;
+    border-radius: 10px; 
+    background: #f8f9fa; 
+    transition: opacity 0.3s ease-in-out; 
+}
+
+
