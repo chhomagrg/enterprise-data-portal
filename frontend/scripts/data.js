@@ -47,6 +47,10 @@ function loadVisualizations() {
             var sheetPlant6 = workbook.Sheets["Plant6"];
             var jsonDataPlant6 = XLSX.utils.sheet_to_json(sheetPlant6, { header: 1 });
 
+            // REMOVE rows 24, 26, and 27 
+            jsonDataPlant5 = jsonDataPlant5.filter((row, index) => ![23, 25, 26].includes(index));
+            jsonDataPlant6 = jsonDataPlant6.filter((row, index) => ![23, 25, 26].includes(index));
+
             var sourceKeysPlant5 = jsonDataPlant5.slice(1).map(row => row[0]);  
             var dcPowerPlant5 = jsonDataPlant5.slice(1).map(row => row[1]);    
             var acPowerPlant5 = jsonDataPlant5.slice(1).map(row => row[2]);    
@@ -84,6 +88,12 @@ function loadVisualizations() {
             // Plot the charts 
             Plotly.newPlot('chart-plant5', [traceDCPlant5, traceACPlant5], layoutPlant5);
             Plotly.newPlot('chart-plant6', [traceDCPlant6, traceACPlant6], layoutPlant6);
+
+            // window resize event listener to ensure responsiveness
+            window.addEventListener("resize", () => {
+                Plotly.Plots.resize("chart-plant5");
+                Plotly.Plots.resize("chart-plant6");
+            });
         })
         .catch(error => console.error("Error loading Excel data:", error));
 }
