@@ -5,7 +5,7 @@ const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
-const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key"; // Ensure you use environment variables for security
+const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key"; 
 
 /**
  * @route   POST /api/users/register

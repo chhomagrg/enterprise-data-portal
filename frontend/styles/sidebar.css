@@ -1,0 +1,203 @@
+/* Sidebar */
+.sidebar {
+    display: none;  /* Hide the sidebar initially */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: rgba(59, 83, 107, 0.6); 
+    backdrop-filter: blur(5px); 
+    color: white;
+    transition: width 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+/* Only show sidebar when user is logged in */
+.sidebar.show {
+    display: flex;
+}
+
+/* Collapsed Sidebar (Only Icons) */
+.sidebar.collapsed {
+    width: 80px; 
+}
+
+/* Sidebar Content */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start; 
+    padding-left: 15px;
+    width: 100%;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1100;
+}
+
+
+.sidebar.collapsed .hamburger-btn {
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg); /* Rotate when collapsed */
+}
+
+
+.sidebar-title {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 10px 15px;
+    color: #ccc;
+}
+
+/* Hide Sidebar Titles When Collapsed */
+.sidebar.collapsed .sidebar-title {
+    display: none;
+}
+
+/* Overview Section */
+.sidebar-overview {
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Account Section */
+.sidebar-account {
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Sidebar Links */
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-links li {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Sidebar links */
+.sidebar-links li a,
+.sidebar-links li button {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Icons inside links and buttons */
+.sidebar-links li a i,
+.sidebar-links li button i {
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+/* Sidebar Collapse - Hide text, center icons */
+.sidebar.collapsed .sidebar-links li a span,
+.sidebar.collapsed .sidebar-links li button span {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-links li a,
+.sidebar.collapsed .sidebar-links li button {
+    justify-content: center;
+    padding: 12px;
+}
+
+/* Hover effect */
+.sidebar-links li a:hover,
+.sidebar-links li button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.overview-section {
+    margin-top: 50px;
+    margin-left: 15px;
+}
+
+.account-section {
+    margin-left: 15px;
+    margin-bottom: 150px;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px; 
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Avatar */
+.sidebar-footer img.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    margin-bottom: 5px; 
+}
+
+/* Small avatar when collapsed */
+.sidebar.collapsed .sidebar-footer img.avatar {
+    width: 35px;
+    height: 35px;
+}
+
+.sidebar-footer h3 {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide username when sidebar is collapsed */
+.sidebar.collapsed .sidebar-footer h3 {
+    display: none;
+}
+
+.calendar-section {
+    text-align: center;
+    margin: 10px;
+}
+
+
+/* Show Hamburger Button only for small screens */
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: block;
+    }
+}

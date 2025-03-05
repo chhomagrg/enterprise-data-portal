@@ -14,10 +14,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Profile section
     const profileSection = document.getElementById("profileSection");
+    const profileLink = document.getElementById("profileLink");
 
     // Message Elements
     const loginMessage = document.getElementById("loginMessage");
     const registerMessage = document.getElementById("registerMessage");
+
+    // Password Reset Elements
+    const resetPasswordModal = document.getElementById("resetPasswordModal");
+    const closeResetPasswordModal = document.getElementById("closeResetPasswordModal");
+    const resetForm = document.getElementById("resetForm");
+    const resetEmailInput = document.getElementById("resetEmail");
+    const resetMessage = document.getElementById("resetMessage");
+    const resetSubmitBtn = document.getElementById("resetSubmitBtn");
+
+    // Side nav bar
+    const token = localStorage.getItem("token");
+    const sidebar = document.getElementById("sidebar");
+    const usernameElement = document.getElementById("sidebarUsername");
+    const avatarElement = document.getElementById("sidebarAvatar");
+    const logoutBtnSidebar = document.getElementById("logoutBtnSidebar");
+    const themeToggle = document.getElementById("themeToggle");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const calendarEl = document.getElementById("calendar");
 
     // Function to check authentication status across all pages
     function checkAuthStatus() {
@@ -25,20 +44,95 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Check if the user is logged in
         if (token) {
-            // Show profile and logout button, hide login button
+            // Show profile, data page and logout button, hide login button
             if (loginBtn) loginBtn.style.display = "none";
             if (logoutBtn) logoutBtn.style.display = "inline-block";
             if (dataLink) dataLink.href = "data.html"; // Allow access to data page
             if (profileSection) profileSection.style.display = "block"; // Show profile section
-            if (profileLink) profileLink.style.display = "inline-block";  // Show profile icon
+            if (profileLink) profileLink.style.display = "inline-block"; // Show profile icon
+
+            // Show sidebar and hamburger menu
+            if (sidebar) sidebar.style.display = "flex"; // Ensure sidebar appears
+            if (sidebarToggle) sidebarToggle.style.display = "block";
+            loadUserProfile(token);
+
         } else {
             // Hide profile section and logout button, show login button
             if (loginBtn) loginBtn.style.display = "inline-block";
             if (logoutBtn) logoutBtn.style.display = "none";
             if (dataLink) dataLink.href = "#"; // Restrict access if not logged in
             if (profileSection) profileSection.style.display = "none"; // Hide profile section
-            if (profileLink) profileLink.style.display = "none";  // Hide profile icon
+            if (profileLink) profileLink.style.display = "none"; // Hide profile icon
+
+            /// Hide sidebar completely
+            if (sidebar) sidebar.style.display = "none";
+            if (sidebarToggle) sidebarToggle.style.display = "none";
         }
+    }
+
+
+    // Load user profile data for sidebar
+    async function loadUserProfile(token) {
+        try {
+            const response = await fetch("http://localhost:5000/api/users/profile", {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch profile");
+            }
+
+            const user = await response.json();
+            sidebarUsername.textContent = user.name || "User";
+            sidebarAvatar.src = user.avatar || "images/default-avatar.png";
+        } catch (error) {
+            console.error("Error fetching profile:", error);
+        }
+    }
+
+    // Load sidebar state from localStorage
+    if (localStorage.getItem("sidebarState") === "collapsed") {
+        sidebar.classList.add("collapsed");
+    }
+
+    // Toggle sidebar on button click
+    sidebarToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("collapsed");
+
+        // Save sidebar state to localStorage
+        localStorage.setItem("sidebarState", sidebar.classList.contains("collapsed") ? "collapsed" : "expanded");
+    });
+
+    
+
+    // Handle Logout
+    if (logoutBtnSidebar) {
+        logoutBtnSidebar.addEventListener("click", function () {
+            localStorage.removeItem("token");
+            alert("Logged out successfully!");
+            checkAuthStatus();
+            window.location.href = "index.html";
+        });
+    }
+
+    // Dark Mode Toggle
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+    }
+    if (calendarEl) {
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            height: "auto"
+        });
+        calendar.render();
     }
 
     // Function to clear input fields
@@ -58,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Open Login Modal When Clicking "Data" Tab if Not Logged In
     if (dataLink) {
         dataLink.addEventListener("click", function (event) {
-            const token = localStorage.getItem("token");   
+            const token = localStorage.getItem("token");
             if (!token) {
                 event.preventDefault(); // Stop navigation
                 authModal.style.display = "block"; // Show login modal
@@ -115,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Handle Login Submission
+    // Handle Login Submission (already in your code)
     if (authForm) {
         authForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -170,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Handle Logout
+    // Handle Logout (already in your code)
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function () {
             localStorage.removeItem("token");
@@ -182,57 +276,76 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Handle Registration
-    if (registrationForm) {
-        registrationForm.addEventListener("submit", async function (event) {
+    // Handle Password Reset Request
+    if (resetSubmitBtn) {
+        resetSubmitBtn.addEventListener("click", async function (event) {
             event.preventDefault();
-    
-            const name = document.querySelector("#registrationForm #name").value;
-            const email = document.querySelector("#registrationForm #registerEmail").value;
-            const password = document.querySelector("#registrationForm #registerPassword").value;
-    
+
+            const resetEmail = resetEmailInput.value;
+
             try {
-                const response = await fetch("http://localhost:5000/api/users/register", {
+                const response = await fetch("http://localhost:5000/api/users/password-reset", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, password })  // Send all the required data
+                    body: JSON.stringify({ email: resetEmail })
                 });
-    
+
                 const data = await response.json();
-    
+
                 if (response.ok) {
-                    registerMessage.textContent = "Registration successful! You can now log in.";
-                    registerMessage.classList.add("success");
-                    registerMessage.classList.remove("error");
-                    registerMessage.style.display = "block";
-    
+                    resetMessage.textContent = "Password reset email sent! Check your inbox.";
+                    resetMessage.classList.add("success");
+                    resetMessage.classList.remove("error");
+                    resetMessage.style.display = "block";
+
                     setTimeout(() => {
-                        registerModal.style.display = "none";
-                        authModal.style.display = "block";
-                        clearInputs(registrationForm); // Clear form fields
+                        resetPasswordModal.style.display = "none";
+                        clearInputs(resetForm);
                     }, 5000);
                 } else {
-                    // Display error message for registration failure
-                    registerMessage.textContent = data.message || "Registration failed. Please try again.";
-                    registerMessage.classList.add("error");
-                    registerMessage.classList.remove("success");
-                    registerMessage.style.display = "block";
-    
+                    resetMessage.textContent = data.message || "Error: Email not found.";
+                    resetMessage.classList.add("error");
+                    resetMessage.classList.remove("success");
+                    resetMessage.style.display = "block";
+
                     setTimeout(() => {
-                        registerMessage.style.display = "none"; // Hide error message after 5 seconds
-                        clearInputs(registrationForm); // Clear the form if needed
-                    }, 5000); 
+                        resetMessage.style.display = "none";
+                    }, 5000);
                 }
             } catch (error) {
-                registerMessage.textContent = "An error occurred. Please try again.";
-                registerMessage.classList.add("error");
-                registerMessage.classList.remove("success");
-                registerMessage.style.display = "block";
-    
+                resetMessage.textContent = "An error occurred. Please try again.";
+                resetMessage.classList.add("error");
+                resetMessage.classList.remove("success");
+                resetMessage.style.display = "block";
+
                 setTimeout(() => {
-                    registerMessage.style.display = "none"; // Hide error message after 5 seconds
-                    clearInputs(registrationForm); // clear the form 
+                    resetMessage.style.display = "none";
                 }, 5000);
+            }
+        });
+    }
+
+    // Open Password Reset Modal
+    const showResetPasswordBtn = document.getElementById("showResetPassword");
+    if (showResetPasswordBtn) {
+        showResetPasswordBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            authModal.style.display = "none";
+            resetPasswordModal.style.display = "block";
+        });
+    }
+
+    // Close Password Reset Modal
+    if (closeResetPasswordModal) {
+        closeResetPasswordModal.addEventListener("click", function () {
+            resetPasswordModal.style.display = "none";
+            clearInputs(resetForm);
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target === resetPasswordModal) {
+                resetPasswordModal.style.display = "none";
+                clearInputs(resetForm);
             }
         });
     }
@@ -240,3 +353,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Run the checkAuthStatus function on page load
     checkAuthStatus();
 });
+

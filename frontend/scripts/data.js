@@ -119,3 +119,20 @@ function resizeTableauIframe() {
         iframe.style.height = window.innerHeight * 0.75 + "px";
     }
 }
+
+// Hamburger Menu Functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-links');
+
+    if (hamburger && navMenu) {
+        console.log("Hamburger and Nav Menu found!");
+        hamburger.addEventListener('click', () => {
+            console.log("Hamburger clicked!");
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active'); // For animation
+        });
+    } else {
+        console.log("Hamburger or Nav Menu not found!");
+    }
+});

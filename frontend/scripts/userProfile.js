@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Set form fields as read-only or editable
+    // Set form fields as read-only 
     function setReadOnly(isReadOnly) {
         document.getElementById("username").readOnly = isReadOnly;
         document.getElementById("name").readOnly = isReadOnly;
