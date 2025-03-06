@@ -11,6 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles/sidebar.css">
+
+    <style>
+        .sidebar, .hamburger-btn {
+            display: none;  /* Ensure both sidebar and hamburger button are hidden before JS runs */
+        }
+    </style>
 
     
 </head>
@@ -24,7 +31,6 @@
     <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="aboutus.html">About Us</a></li>
-        <li><a href="data.html" id="dataLink" class="active">Data</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="userProfile.html" id="profileLink"><i class="fas fa-user"></i></a></li>
     </ul>
@@ -42,6 +48,38 @@
         </div>
 
 </nav>
+
+<!-- Hamburger Sidebar Button -->
+<button id="sidebarToggle" class="hamburger-btn">
+    <i class="fas fa-bars"></i>
+</button>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar">
+    <!-- Overview Section -->
+    <div class="overview-section">
+        <p class="sidebar-title">OVERVIEW</p>
+        <ul class="sidebar-links">
+            <li><a href="data.html" id="dataLink"><i class="fas fa-chart-bar"></i> <span>Dashboard</span></a></li>
+            <li><a href="userProfile.html"><i class="fas fa-user-edit"></i> <span>View Profile</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Account Section -->
+    <div class="account-section">
+        <p class="sidebar-title">ACCOUNT</p>
+        <ul class="sidebar-links">
+            <li><button id="themeToggle"><i class="fas fa-moon"></i> <span>Dark Mode</span></button></li>
+            <li><button id="logoutBtnSidebar" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <img id="sidebarAvatar" class="avatar" src="images/default-avatar.png" alt="User Avatar">
+        <h3 id="sidebarUsername">User Name</h3>
+    </div>
+</aside>
 
 <main>
     <h1>Data Dashboard</h1>

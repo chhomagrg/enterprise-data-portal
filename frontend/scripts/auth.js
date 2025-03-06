@@ -52,7 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (profileLink) profileLink.style.display = "inline-block"; // Show profile icon
 
             // Show sidebar and hamburger menu
+            if (sidebar) sidebar.classList.add("show");
             if (sidebar) sidebar.style.display = "flex"; // Ensure sidebar appears
+
             if (sidebarToggle) sidebarToggle.style.display = "block";
             loadUserProfile(token);
 
@@ -65,8 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (profileLink) profileLink.style.display = "none"; // Hide profile icon
 
             /// Hide sidebar completely
+            if (sidebar) sidebar.classList.remove("show");
             if (sidebar) sidebar.style.display = "none";
             if (sidebarToggle) sidebarToggle.style.display = "none";
+        
         }
     }
 
