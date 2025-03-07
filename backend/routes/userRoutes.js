@@ -172,9 +172,9 @@ router.put("/profile", authMiddleware, async (req, res) => {
         console.error("Profile update error:", error);
         res.status(500).json({ message: "Server error. Please try again." });
     }
+
+    
 });
-
-
 
 
 

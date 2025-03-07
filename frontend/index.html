@@ -22,11 +22,10 @@
 <!-- Navbar -->
 <nav class="navbar">
     <div class="logo">
-        <img src="images/logo.png" alt="MAXX ENERGY Logo">
-
+        <img id="navbarLogo" src="images/logo.png" alt="MAXX ENERGY Logo">
     </div>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="aboutus.html">About Us</a></li>
         <li><a href="faq.html">FAQ</a></li>
     </ul>
@@ -35,13 +34,14 @@
     <button id="loginBtn" class="btn">Login</button>
     <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
         
-            <!-- Hamburger Menu -->
-        <div class="hamburger">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>   
+    <!-- Hamburger Menu -->
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>   
 </nav>
+
 
 <!-- Hamburger Sidebar Button -->
 <button id="sidebarToggle" class="hamburger-btn">
@@ -94,7 +94,7 @@
         <p id="toggleAuth">Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
 
         <!-- Forgot Password Link -->
-        <p id="forgotPasswordLink"><a href="#" id="showPasswordReset">Forgot Password?</a></p>
+        <a href="#" id="forgot-password-link">Forgot Password?</a>
     </div>
 </div>
 
@@ -135,18 +135,20 @@
 <!-- Password Reset Modal -->
 <div id="passwordResetModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Password Reset</h2>
-        <p>Enter your email to reset your password.</p>
-        <input type="email" id="resetEmail" placeholder="Your Email" required>
-        <button id="resetSubmitBtn">Submit</button>
-        <div class="message success" id="successMessage">Check your email for reset instructions!</div>
-        <div class="message error" id="errorMessage">There was an error. Please try again.</div>
-        <div id="toggleReset">
-            <a href="#" onclick="toggleLoginForm()">Back to Login</a>
-        </div>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Password Reset</h2>
+      <p>Enter your email to reset your password.</p>
+      <input type="email" id="resetEmail" placeholder="Your Email" required>
+      <button id="resetSubmitBtn">Submit</button>
+      <!-- Success and Error messages -->
+      <div class="message success" id="successMessage" style="display: none;">Check your email for reset instructions!</div>
+      <div class="message error" id="errorMessage" style="display: none;">There was an error. Please try again.</div>
+      <div id="toggleReset">
+        <a href="#" onclick="toggleLoginForm()">Back to Login</a>
+      </div>
     </div>
-</div>
+  </div>
+  
 
 <!-- Body-->
 <header class="page-header header container-fluid" style="background-image: url('images/Photo2.jpeg'); background-size: cover; background-position: center; position: relative; height: 100vh; ">

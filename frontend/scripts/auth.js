@@ -119,6 +119,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const logo = document.getElementById("navbarLogo");
+
+    let savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    } else {
+        document.body.classList.remove("dark-mode"); // Ensures default light mode
+    }
+    // Update the logo based on the initial theme
+    updateLogo();
+
     // Dark Mode Toggle
     if (themeToggle) {
         themeToggle.addEventListener("click", () => {
@@ -127,17 +139,24 @@ document.addEventListener("DOMContentLoaded", function () {
             if (document.body.classList.contains("dark-mode")) {
                 localStorage.setItem("theme", "dark");
             } else {
-                localStorage.setItem("theme", "light");
+                localStorage.removeItem("theme");
             }
+
+            updateLogo();
         });
     }
-    if (calendarEl) {
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: "dayGridMonth",
-            height: "auto"
-        });
-        calendar.render();
+
+    // Function to update the logo based on theme
+    function updateLogo() {
+        if (document.body.classList.contains("dark-mode")) {
+            logo.src = "images/logo-dark.png";  // Set Dark Mode Logo
+        } else {
+            logo.src = "images/logo.png"; // Set Light Mode Logo
+        }
     }
+    
+    
+    
 
     // Function to clear input fields
     function clearInputs(form) {
@@ -213,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Handle Login Submission (already in your code)
+    // Handle Login Submission
     if (authForm) {
         authForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -268,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Handle Logout (already in your code)
+    // Handle Logout
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function () {
             localStorage.removeItem("token");
@@ -279,82 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "index.html"; // Redirect to homepage
         });
     }
-
-    // Handle Password Reset Request
-    if (resetSubmitBtn) {
-        resetSubmitBtn.addEventListener("click", async function (event) {
-            event.preventDefault();
-
-            const resetEmail = resetEmailInput.value;
-
-            try {
-                const response = await fetch("http://localhost:5000/api/users/password-reset", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: resetEmail })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    resetMessage.textContent = "Password reset email sent! Check your inbox.";
-                    resetMessage.classList.add("success");
-                    resetMessage.classList.remove("error");
-                    resetMessage.style.display = "block";
-
-                    setTimeout(() => {
-                        resetPasswordModal.style.display = "none";
-                        clearInputs(resetForm);
-                    }, 5000);
-                } else {
-                    resetMessage.textContent = data.message || "Error: Email not found.";
-                    resetMessage.classList.add("error");
-                    resetMessage.classList.remove("success");
-                    resetMessage.style.display = "block";
-
-                    setTimeout(() => {
-                        resetMessage.style.display = "none";
-                    }, 5000);
-                }
-            } catch (error) {
-                resetMessage.textContent = "An error occurred. Please try again.";
-                resetMessage.classList.add("error");
-                resetMessage.classList.remove("success");
-                resetMessage.style.display = "block";
-
-                setTimeout(() => {
-                    resetMessage.style.display = "none";
-                }, 5000);
-            }
-        });
-    }
-
-    // Open Password Reset Modal
-    const showResetPasswordBtn = document.getElementById("showResetPassword");
-    if (showResetPasswordBtn) {
-        showResetPasswordBtn.addEventListener("click", function (event) {
-            event.preventDefault();
-            authModal.style.display = "none";
-            resetPasswordModal.style.display = "block";
-        });
-    }
-
-    // Close Password Reset Modal
-    if (closeResetPasswordModal) {
-        closeResetPasswordModal.addEventListener("click", function () {
-            resetPasswordModal.style.display = "none";
-            clearInputs(resetForm);
-        });
-
-        window.addEventListener("click", function (event) {
-            if (event.target === resetPasswordModal) {
-                resetPasswordModal.style.display = "none";
-                clearInputs(resetForm);
-            }
-        });
-    }
-
     // Run the checkAuthStatus function on page load
     checkAuthStatus();
 });
-

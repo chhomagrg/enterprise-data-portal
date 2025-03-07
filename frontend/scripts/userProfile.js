@@ -144,4 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Expose the selectAvatar function to the global scope for avatar selection
     window.selectAvatar = selectAvatar;
+
+   
 });
+
+
+

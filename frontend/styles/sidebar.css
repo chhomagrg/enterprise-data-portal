@@ -193,6 +193,28 @@
     text-align: center;
     margin: 10px;
 }
+/* Default light mode */
+body {
+    background-color: white;
+    color: black;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Adjust sidebar colors in dark mode */
+body.dark-mode .sidebar {
+    background: rgba(29, 29, 29, 0.9);
+}
+
+/* Change button appearance */
+body.dark-mode .btn {
+    background-color: #333;
+    color: white;
+}
 
 
 /* Show Hamburger Button only for small screens */

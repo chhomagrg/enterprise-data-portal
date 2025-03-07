@@ -601,3 +601,141 @@ html, body {
     }
 }
 
+/* Subtle Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+body.dark-mode .hero-section {
+    height: 60vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.85), rgba(25, 25, 25, 0.9)), 
+                url('images/Photo3.jpeg') no-repeat center center;
+    background-size: cover;
+}
+
+
+/* Who We Are Section */
+body.dark-mode .who-we-are {
+    background-color: #121212;
+}
+
+body.dark-mode .who-we-are h2,
+body.dark-mode .who-we-are p {
+    color: #e8e0e0; 
+}
+
+/* Mission Section */
+body.dark-mode .mission-section {
+    background: linear-gradient(135deg, #1b1b1b 0%, #2b2b2b 50%, #3b3b3b 100%);
+}
+
+/* Timeline */
+body.dark-mode .company-history {
+    background: linear-gradient(135deg, #101010 0%, #2b2b2b 50%, #474747 100%);
+}
+
+body.dark-mode .company-history h2 {
+    color: #ffffff; }
+
+body.dark-mode .timeline-item p,
+body.dark-mode .timeline-item h5 {
+    color: #f8f5f5; 
+}
+
+/* Team Section */
+body.dark-mode .team-section {
+    background-color: #333030;
+    
+
+}
+body.dark-mode .team-section h2 {
+    color: floralwhite;
+}
+
+body.dark-mode .team-section h3 {
+    color: rgb(8, 8, 8);
+}
+
+body.dark-mode .team-member {
+    background-color: #e5e5e5;
+}
+
+/* Contact Section */
+body.dark-mode #contact {
+    background: linear-gradient(135deg, #1a1a1a 0%, #292929 50%, #3a3a3a 100%);
+    width: 100vw;
+    padding: 60px 0;
+}
+
+
+
+body.dark-mode #contact form {
+    background-color: #f0f0f0;
+}
+
+body.dark-mode #contact label {
+    color: #222;
+}
+
+body.dark-mode #contact input,
+body.dark-mode #contact textarea {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #bbb;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden; 
+    background: linear-gradient(135deg, #1a1a1a 0%, #292929 50%, #3a3a3a 100%);
+}
+
+#contact button {
+    width: 100%;
+    padding: 16px;
+    background-color: #115a6a;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contact button:hover {
+    background-color: #13113b;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode Button Styles */
+body.dark-mode #contact button {
+    background-color: #1a1a2e; 
+    color: #e0e0e0; 
+    box-shadow: 0 4px 8px rgba(100, 100, 150, 0.2); 
+}
+
+body.dark-mode #contact button:hover {
+    background-color: #16213e; 
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(100, 100, 150, 0.3); 
+}
+

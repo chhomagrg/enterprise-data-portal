@@ -1,50 +1,55 @@
-// Handle showing and hiding the login and password reset forms
-const showPasswordReset = document.getElementById('showPasswordReset');
-const showLogin = document.getElementById('showLogin');
-const authModal = document.getElementById('authModal');
-const passwordResetModal = document.getElementById('passwordResetModal');
-const closeResetModal = passwordResetModal.querySelector('.close');
-
-// When the user clicks the "Forgot Password?" link
-if (showPasswordReset) {
-    showPasswordReset.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        authModal.style.display = 'none'; // Hide the login modal
-        passwordResetModal.style.display = 'block'; // Show the password reset modal
-    });
-}
-
-// When the user clicks "Back to Login" inside the password reset modal
-if (showLogin) {
-    showLogin.addEventListener('click', function(event) {
-        event.preventDefault();
-        passwordResetModal.style.display = 'none'; // Hide the password reset modal
-        authModal.style.display = 'block'; // Show the login modal
-    });
-}
-
-// Close the password reset modal when the close button is clicked
-if (closeResetModal) {
-    closeResetModal.addEventListener('click', function() {
-        passwordResetModal.style.display = 'none'; // Close the reset modal
-        authModal.style.display = 'block'; // Show the login modal
-    });
-}
-
-// Close the login modal when clicking the close button
-const closeAuthModal = authModal.querySelector('.close');
-if (closeAuthModal) {
-    closeAuthModal.addEventListener('click', function() {
-        authModal.style.display = 'none';
-    });
-}
-
-// Close the modals if clicked outside
-window.addEventListener('click', function(event) {
-    if (event.target === authModal) {
-        authModal.style.display = 'none';
+// Show the password reset modal when "Forgot Password?" is clicked
+document.getElementById('forgot-password-link').addEventListener('click', function () {
+    document.getElementById('passwordResetModal').style.display = 'block';
+  });
+  
+  // Close the modal when clicking on the close button (x)
+  function closeModal() {
+    document.getElementById('passwordResetModal').style.display = 'none';
+  }
+  
+  // Toggle between login form and password reset form
+  function toggleLoginForm() {
+    document.getElementById('passwordResetModal').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';  // Assuming you have a login form with id="loginForm"
+  }
+  
+  // Handle the password reset form submission
+  document.getElementById('resetSubmitBtn').addEventListener('click', async function () {
+    const email = document.getElementById('resetEmail').value;
+    
+    // Validate if the email is entered
+    if (!email) {
+      alert('Please enter your email.');
+      return;
     }
-    if (event.target === passwordResetModal) {
-        passwordResetModal.style.display = 'none';
+  
+    // Clear any previous messages
+    document.getElementById('successMessage').style.display = 'none';
+    document.getElementById('errorMessage').style.display = 'none';
+  
+    try {
+      // Send a POST request to the backend to request a password reset
+      const response = await fetch('/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email })
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
+      } else {
+        // Show error message
+        document.getElementById('errorMessage').style.display = 'block';
+      }
+    } catch (error) {
+      // Handle network or server errors
+      document.getElementById('errorMessage').style.display = 'block';
     }
-});
+  });
+  
