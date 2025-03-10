@@ -38,19 +38,23 @@
     width: 100%;
 }
 
-/* Hamburger Button */
 .hamburger-btn {
-    position: absolute;
-    top: 15px;
-    left: 15px;
+    position: fixed;
+    top: 0px; 
+    left: 0; 
+    z-index: 1001;
     background: none;
     border: none;
-    font-size: 24px;
-    color: white;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    z-index: 1100;
+    padding: 10px;
 }
+
+.hamburger-btn i {
+    font-size: 1rem;
+    color: white;
+}
+
+
 
 
 .sidebar.collapsed .hamburger-btn {
@@ -193,6 +197,76 @@
     text-align: center;
     margin: 10px;
 }
+
+/* Sidebar Logo */
+.sidebar-logo {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-logo img {
+    width: 50px;
+    height: auto;
+}
+
+/* Toggle Switch Container */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: auto;
+}
+
+/* Hide default checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Slider Track */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+/* Slider Circle */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* Checked (Dark Mode ON) */
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Hide the Dark Mode label when sidebar is collapsed */
+.sidebar.collapsed .toggle-label {
+    display: none;
+}
+
+
 /* Default light mode */
 body {
     background-color: white;

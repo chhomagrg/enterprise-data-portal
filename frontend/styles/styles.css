@@ -39,6 +39,7 @@ body {
 /* Logo */
 .logo img {
     height: 60px;
+    
 }
 
 /* Navigation Links */
@@ -76,7 +77,7 @@ body {
 
 /* Active link styling */
 .nav-links .active {
-    background-color: #7993ee;
+    background-color: #496da7;
     border-radius: 5px;
     font-weight: bold;
 }
@@ -467,12 +468,12 @@ body.dark-mode p {
 
 /* Navbar in Dark Mode */
 body.dark-mode .navbar {
-    background-color: #1a1a1a;
+    background-color: #2d2d2d;
 }
 
 /* Sidebar in Dark Mode */
 body.dark-mode .sidebar {
-    background: rgba(29, 29, 29, 0.9);
+    background:  #2d2d2d;
 }
 
 /* Sidebar Links */
@@ -513,7 +514,7 @@ body.dark-mode .bar {
 
 /* Footer in Dark Mode */
 body.dark-mode footer {
-    background-color: #1a1a1a;
+    background-color: #2d2d2d;
     color: #ddd;
 }
 

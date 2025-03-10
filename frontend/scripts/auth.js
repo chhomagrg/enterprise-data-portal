@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerMessage = document.getElementById("registerMessage");
 
     // Password Reset Elements
-    const resetPasswordModal = document.getElementById("resetPasswordModal");
+    const resetPasswordModal = document.getElementById("passwordResetModal");  // Fixed id here
     const closeResetPasswordModal = document.getElementById("closeResetPasswordModal");
     const resetForm = document.getElementById("resetForm");
     const resetEmailInput = document.getElementById("resetEmail");
@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     // Load user profile data for sidebar
     async function loadUserProfile(token) {
         try {
@@ -107,8 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("sidebarState", sidebar.classList.contains("collapsed") ? "collapsed" : "expanded");
     });
 
-    
-
     // Handle Logout
     if (logoutBtnSidebar) {
         logoutBtnSidebar.addEventListener("click", function () {
@@ -120,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const logo = document.getElementById("navbarLogo");
+    const sidebarLogo = document.getElementById("sidebarLogo");
+    
 
     let savedTheme = localStorage.getItem("theme");
 
@@ -138,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (document.body.classList.contains("dark-mode")) {
                 localStorage.setItem("theme", "dark");
+                themeToggle.checked = true; // Toggle ON if dark mode is stored
             } else {
                 localStorage.removeItem("theme");
             }
@@ -149,14 +149,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to update the logo based on theme
     function updateLogo() {
         if (document.body.classList.contains("dark-mode")) {
-            logo.src = "images/logo-dark.png";  // Set Dark Mode Logo
+            logo.src = "images/logo-dark.png";  // Set Dark Mode Logo for navbar
+            sidebarLogo.src = "images/logo-dark-2.png"; // Set Dark Mode logo for sidebar
         } else {
-            logo.src = "images/logo.png"; // Set Light Mode Logo
+            logo.src = "images/logo.png"; // Set Light Mode Logo for navbar
+            sidebarLogo.src = "images/logo-2.png" //Set lightmode logo for sidebar
         }
     }
-    
-    
-    
 
     // Function to clear input fields
     function clearInputs(form) {
@@ -298,6 +297,67 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "index.html"; // Redirect to homepage
         });
     }
+
+    // Password Reset Handling (FORGOT PASSWORD LINK)
+    const forgotPasswordLink = document.getElementById("forgot-password-link");
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            resetPasswordModal.style.display = "block"; // Show the reset password modal
+        });
+    }
+
+    // Handle Password Reset Submit
+    if (resetSubmitBtn) {
+        resetSubmitBtn.addEventListener("click", async function (event) {
+            event.preventDefault();
+
+            const email = resetEmailInput.value;
+
+            try {
+                const response = await fetch("http://localhost:5000/reset-password", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resetMessage.textContent = data.message || "Password reset email sent.";
+                    resetMessage.classList.add("success");
+                    resetMessage.classList.remove("error");
+                } else {
+                    resetMessage.textContent = data.message || "Error sending password reset email.";
+                    resetMessage.classList.add("error");
+                    resetMessage.classList.remove("success");
+                }
+
+                resetMessage.style.display = "block";
+            } catch (error) {
+                resetMessage.textContent = "An error occurred. Please try again.";
+                resetMessage.classList.add("error");
+                resetMessage.classList.remove("success");
+                resetMessage.style.display = "block";
+            }
+        });
+    }
+
+    // Close Reset Password Modal
+    if (closeResetPasswordModal) {
+        closeResetPasswordModal.addEventListener("click", function () {
+            resetPasswordModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target === resetPasswordModal) {
+                resetPasswordModal.style.display = "none";
+            }
+        });
+    }
+
     // Run the checkAuthStatus function on page load
     checkAuthStatus();
 });

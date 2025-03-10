@@ -14,8 +14,7 @@
             display: none;  /* Ensure both sidebar and hamburger button are hidden before JS runs */
         }
     </style>
-  
-    
+   
 </head>
 <body>
 
@@ -50,6 +49,14 @@
 
 <!-- Sidebar -->
 <aside id="sidebar" class="sidebar">
+
+    <!-- Sidebar Logo Section -->
+    <div class="sidebar-logo">
+        <a href="index.html">
+            <img id="sidebarLogo" src="images/logo-2.png" alt="MAXX ENERGY Logo">
+        </a>
+    </div>
+
     <!-- Overview Section -->
     <div class="overview-section">
         <p class="sidebar-title">OVERVIEW</p>
@@ -64,7 +71,13 @@
     <div class="account-section">
         <p class="sidebar-title">ACCOUNT</p>
         <ul class="sidebar-links">
-            <li><button id="themeToggle"><i class="fas fa-moon"></i> <span>Dark Mode</span></button></li>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Dark Mode</span>
+            </li>
             <li><button id="logoutBtnSidebar" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button></li>
         </ul>
     </div>

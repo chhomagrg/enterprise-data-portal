@@ -1,117 +1,62 @@
-
 /* User profile page */
 body {
     background: #ffffff;
     margin-top: 20px;
 }
 
-.ui-w-80 {
-    width : 80px !important;
-    height: auto;
-}
-
-.btn-default {
-    border-color: rgba(24, 28, 33, 0.1);
-    background  : rgba(0, 0, 0, 0);
-    color       : #4E5155;
-}
-
-label.btn {
-    margin-bottom: 0;
-}
-
-.btn-outline-primary {
-    border-color: #26B4FF;
-    background  : transparent;
-    color       : #26B4FF;
-}
-
+/* Buttons */
 .btn {
     cursor: pointer;
 }
 
-.text-light {
-    color: #babbbc !important;
+.btn-default {
+    border-color: rgba(24, 28, 33, 0.1);
+    background: rgba(0, 0, 0, 0);
+    color: #4E5155;
 }
 
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background: transparent;
+    color: #26B4FF;
+}
+
+.btn-outline-primary:hover {
+    background: #26B4FF;
+    color: #ffffff;
+}
+
+/* Social Buttons */
 .btn-facebook {
-    border-color: rgba(0, 0, 0, 0);
-    background  : #3B5998;
-    color       : #fff;
+    background: #3B5998;
+    color: #fff;
 }
 
 .btn-instagram {
-    border-color: rgba(0, 0, 0, 0);
-    background  : #000;
-    color       : #fff;
+    background: #000;
+    color: #fff;
 }
 
+/* Card Styling */
 .card {
     background-clip: padding-box;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.row-bordered {
-    overflow: hidden;
-}
-
-.account-settings-fileinput {
-    position  : absolute;
-    visibility: hidden;
-    width     : 1px;
-    height    : 1px;
-    opacity   : 0;
+/* Sidebar Links */
+.account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
 .account-settings-links .list-group-item.active {
     font-weight: bold !important;
-}
-
-html:not(.dark-style) .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
     background: transparent !important;
 }
 
-.account-settings-multiselect~.select2-container {
-    width: 100% !important;
-}
-
-.light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
-
-.light-style .account-settings-links .list-group-item.active {
-    color: #4e5155 !important;
-}
-
-.material-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
-
-.material-style .account-settings-links .list-group-item.active {
-    color: #4e5155 !important;
-}
-
-.dark-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(255, 255, 255, 0.03) !important;
-}
-
-.dark-style .account-settings-links .list-group-item.active {
-    color: #fff !important;
-}
-
-.light-style .account-settings-links .list-group-item.active {
-    color: #4E5155 !important;
-}
-
-.light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
-
+/* Form Elements */
 .form-group {
     margin-bottom: 15px;
 }
@@ -121,26 +66,17 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     padding: 10px;
 }
 
- /* Avatar Images */
- .avatar-options img {
-    width: 60px;  
+.container {
+    padding: 60px;
+}
+
+/* Avatar Selection */
+.avatar-options img {
+    width: 60px;
     height: auto;
     margin: 5px;
     cursor: pointer;
-}
-
-/* Styling for avatar container */
-.avatar-selection {
-    margin-top: 10px;
-}
-
-.avatar-options {
-    display: none;
-    margin-top: 10px;
-}
-
-.avatar-options.active {
-    display: block;
+    border: 2px solid transparent;
 }
 
 .avatar-option:hover {
@@ -156,35 +92,28 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     border: 3px solid #26B4FF;
 }
 
-/* Add spacing after the form container */
-.form-container {
-    margin-bottom: 240px; 
-    padding-bottom: 200px; 
-}
-
-
 /* Dark Mode for User Profile Page */
 body.dark-mode {
-    background: #1e1e1e; 
+    background: #1e1e1e;
     color: #e0e0e0;
 }
 
-/* Card Styling */
+/* Dark Mode - Card */
 body.dark-mode .card {
-    background: #2a2a2a; 
+    background: #2a2a2a;
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
 }
 
-/* Buttons */
+/* Dark Mode - Buttons */
 body.dark-mode .btn-default {
-    background: #3a3a3a; 
+    background: #3a3a3a;
     border-color: rgba(255, 255, 255, 0.1);
-    color: #dcdcdc; 
+    color: #dcdcdc;
 }
 
 body.dark-mode .btn-outline-primary {
-    border-color: #7aa5d2; 
-    color: #7aa5d2; 
+    border-color: #7aa5d2;
+    color: #7aa5d2;
 }
 
 body.dark-mode .btn-outline-primary:hover {
@@ -192,28 +121,19 @@ body.dark-mode .btn-outline-primary:hover {
     color: #1e1e1e;
 }
 
-/* Social Buttons */
-body.dark-mode .btn-facebook {
-    background: #2d4373; 
-}
-
-body.dark-mode .btn-instagram {
-    background: #222; 
-}
-
-/* Form Elements */
+/* Dark Mode - Form Elements */
 body.dark-mode .form-control {
-    background: #2f2f2f; 
+    background: #2f2f2f;
     border: 1px solid #555;
     color: #e0e0e0;
 }
 
 body.dark-mode .form-control:focus {
-    border-color: #7aa5d2; 
+    border-color: #7aa5d2;
     background: #3a3a3a;
 }
 
-/* Account Settings Sidebar */
+/* Dark Mode - Account Settings Sidebar */
 body.dark-mode .account-settings-links .list-group-item {
     background: #2a2a2a;
     border-color: rgba(255, 255, 255, 0.05);
@@ -223,10 +143,10 @@ body.dark-mode .account-settings-links .list-group-item {
 body.dark-mode .account-settings-links .list-group-item.active {
     background: #3a3a3a;
     color: #ffffff;
-    border-left: 4px solid #7aa5d2; 
+    border-left: 4px solid #7aa5d2;
 }
 
-/* Avatar Selection */
+/* Dark Mode - Avatar Selection */
 body.dark-mode .avatar-options img {
     border: 2px solid #555;
 }
@@ -235,13 +155,8 @@ body.dark-mode .selected-avatar {
     border: 3px solid #7aa5d2;
 }
 
-/* Avatar Hover */
+/* Dark Mode - Avatar Hover */
 body.dark-mode .avatar-option:hover {
     transform: scale(1.1);
     border: 2px solid #7aa5d2;
-}
-
-/* Light Text for Dark Mode */
-body.dark-mode .text-light {
-    color: #b0b0b0 !important;
 }

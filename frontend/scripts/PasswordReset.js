@@ -1,55 +1,86 @@
-// Show the password reset modal when "Forgot Password?" is clicked
-document.getElementById('forgot-password-link').addEventListener('click', function () {
-    document.getElementById('passwordResetModal').style.display = 'block';
-  });
-  
-  // Close the modal when clicking on the close button (x)
-  function closeModal() {
-    document.getElementById('passwordResetModal').style.display = 'none';
-  }
-  
-  // Toggle between login form and password reset form
-  function toggleLoginForm() {
-    document.getElementById('passwordResetModal').style.display = 'none';
-    document.getElementById('loginForm').style.display = 'block';  // Assuming you have a login form with id="loginForm"
-  }
-  
-  // Handle the password reset form submission
-  document.getElementById('resetSubmitBtn').addEventListener('click', async function () {
-    const email = document.getElementById('resetEmail').value;
-    
-    // Validate if the email is entered
-    if (!email) {
-      alert('Please enter your email.');
-      return;
-    }
-  
-    // Clear any previous messages
-    document.getElementById('successMessage').style.display = 'none';
-    document.getElementById('errorMessage').style.display = 'none';
-  
-    try {
-      // Send a POST request to the backend to request a password reset
-      const response = await fetch('/forgot-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email })
+document.addEventListener("DOMContentLoaded", function () {
+  // Password Reset Elements
+  const resetPasswordModal = document.getElementById("resetPasswordModal");
+  const resetSubmitBtn = document.getElementById("resetSubmitBtn");
+  const resetEmailInput = document.getElementById("resetEmail");
+  const resetMessage = document.getElementById("resetMessage");
+
+  // Forgot Password Link
+  const forgotPasswordLink = document.getElementById("forgot-password-link");
+
+  // If the forgot password link is clicked, show the reset password modal
+  if (forgotPasswordLink) {
+      forgotPasswordLink.addEventListener("click", function (event) {
+          event.preventDefault(); // Prevent default behavior (e.g., navigating)
+          resetPasswordModal.style.display = "block";  // Show the reset password modal
       });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        // Show success message
-        document.getElementById('successMessage').style.display = 'block';
-      } else {
-        // Show error message
-        document.getElementById('errorMessage').style.display = 'block';
-      }
-    } catch (error) {
-      // Handle network or server errors
-      document.getElementById('errorMessage').style.display = 'block';
-    }
-  });
-  
+  }
+
+  // Close the password reset modal when clicking outside the modal or on the close button
+  const closeResetPasswordModal = document.getElementById("closeResetPasswordModal");
+  if (closeResetPasswordModal) {
+      closeResetPasswordModal.addEventListener("click", function () {
+          resetPasswordModal.style.display = "none"; // Hide modal
+      });
+
+      window.addEventListener("click", function (event) {
+          if (event.target === resetPasswordModal) {
+              resetPasswordModal.style.display = "none"; // Hide modal
+          }
+      });
+  }
+
+  // Handle Password Reset Submission
+  if (resetSubmitBtn) {
+      resetSubmitBtn.addEventListener("click", async function (event) {
+          event.preventDefault(); // Prevent form from submitting the default way
+
+          const email = resetEmailInput.value.trim(); // Get the email value from the input field
+
+          // Basic email validation
+          if (!email) {
+              resetMessage.textContent = "Please enter a valid email address.";
+              resetMessage.classList.add("error");
+              resetMessage.classList.remove("success");
+              resetMessage.style.display = "block";
+              return;
+          }
+
+          try {
+              // Send the email for password reset to the backend
+              const response = await fetch("http://localhost:5000/reset-password", {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ email }) // Send email in request body
+              });
+
+              const data = await response.json(); // Parse response as JSON
+
+              if (response.ok) {
+                  // Success response handling
+                  resetMessage.textContent = data.message || "Password reset email sent successfully!";
+                  resetMessage.classList.add("success");
+                  resetMessage.classList.remove("error");
+                  resetMessage.style.display = "block";
+
+                  // Optionally, clear the input after successful submission
+                  resetEmailInput.value = "";
+              } else {
+                  // Error response handling
+                  resetMessage.textContent = data.message || "Error sending password reset email.";
+                  resetMessage.classList.add("error");
+                  resetMessage.classList.remove("success");
+                  resetMessage.style.display = "block";
+              }
+          } catch (error) {
+              // Handle network or other unexpected errors
+              resetMessage.textContent = "An error occurred. Please try again.";
+              resetMessage.classList.add("error");
+              resetMessage.classList.remove("success");
+              resetMessage.style.display = "block";
+          }
+      });
+  }
+});

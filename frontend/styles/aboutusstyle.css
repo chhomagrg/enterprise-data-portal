@@ -233,7 +233,7 @@ html, body {
     font-size: 3rem;
     font-weight: 900;
     color: #13113b;
-    border-bottom: 3px solid #f39c12;
+    border-bottom: 3px solid #fbb019;
     padding-bottom: 10px;
     margin-bottom: 20px;
     display: inline-block;
@@ -250,7 +250,7 @@ html, body {
 }
 
 .timeline-item:hover .timeline-icon {
-    background-color: #f39c12;
+    background-color: #fbb019;
     transform: scale(1.2);
 }
 
@@ -318,8 +318,7 @@ html, body {
 /* CONTACT SECTION */
 #contact {
     background: linear-gradient(135deg, #8398b6 0%, #13113b 100%);
-    padding: 60px 20px;
-    margin: 40px 0;
+    padding: 60px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -677,7 +676,7 @@ body.dark-mode .team-member {
 body.dark-mode #contact {
     background: linear-gradient(135deg, #1a1a1a 0%, #292929 50%, #3a3a3a 100%);
     width: 100vw;
-    padding: 60px 0;
+    padding: 60px;
 }
 
 
@@ -698,12 +697,7 @@ body.dark-mode #contact textarea {
 }
 
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    min-height: 100vh;
-    overflow-x: hidden; 
+html.dark-mode {
     background: linear-gradient(135deg, #1a1a1a 0%, #292929 50%, #3a3a3a 100%);
 }
 
