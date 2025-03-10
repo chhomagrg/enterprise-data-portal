@@ -21,6 +21,7 @@ app.use("/data", express.static(path.join(__dirname, "../frontend/data"))); // S
 app.use("/api/users", userRoutes);
 app.use("/api/data", dataRoutes);
 
+
 // Create a transport using your email provider's SMTP settings
 const transporter = nodemailer.createTransport({
     service: "gmail", // Example with Gmail, you can use other providers too

@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutBtnSidebar = document.getElementById("logoutBtnSidebar");
     const themeToggle = document.getElementById("themeToggle");
     const sidebarToggle = document.getElementById("sidebarToggle");
-    const calendarEl = document.getElementById("calendar");
+    const calendarSection = document.querySelector(".calendar-section");
 
     // Function to check authentication status across all pages
     function checkAuthStatus() {
@@ -102,9 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
     sidebarToggle.addEventListener("click", function () {
         sidebar.classList.toggle("collapsed");
 
+        if (sidebar.classList.contains("collapsed")) {
+            if (calendarSection) calendarSection.style.display = "none"; // Hide calendar
+        } else {
+            if (calendarSection) calendarSection.style.display = "block"; // Show calendar
+        }
+
+
         // Save sidebar state to localStorage
         localStorage.setItem("sidebarState", sidebar.classList.contains("collapsed") ? "collapsed" : "expanded");
     });
+
 
     // Handle Logout
     if (logoutBtnSidebar) {

@@ -61,16 +61,25 @@
             </ul>
         </div>
 
-        
+         <!-- Calendar Section -->
+    <div class="calendar-section">
+        <p class="sidebar-title">Calendar</p>
+        <div id="sidebarCalendar"></div>
+    </div>
     <!-- Account Section -->
     <div class="account-section">
         <p class="sidebar-title">ACCOUNT</p>
         <ul class="sidebar-links">
-            <li><button id="themeToggle"><i class="fas fa-moon"></i> <span>Dark Mode</span></button></li>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Dark Mode</span>
+            </li>
             <li><button id="logoutBtnSidebar" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button></li>
         </ul>
     </div>
-
     <!-- Sidebar Footer -->
     <div class="sidebar-footer">
         <img id="sidebarAvatar" class="avatar" src="images/default-avatar.png" alt="User Avatar">
@@ -159,7 +168,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="scripts/auth.js"></script>
     <script src="scripts/userProfile.js"></script>
     <script src="scripts/script.js"></script>

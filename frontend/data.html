@@ -12,6 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="styles/sidebar.css">
+   
 
     <style>
         .sidebar, .hamburger-btn {
@@ -68,11 +69,23 @@
         </ul>
     </div>
 
-    <!-- Account Section -->
-    <div class="account-section">
+     <!-- Calendar Section -->
+   <div class="calendar-section">
+        <p class="sidebar-title">Calendar</p>
+        <div id="sidebarCalendar"></div>
+    </div>
+
+     <!-- Account Section -->
+     <div class="account-section">
         <p class="sidebar-title">ACCOUNT</p>
         <ul class="sidebar-links">
-            <li><button id="themeToggle"><i class="fas fa-moon"></i> <span>Dark Mode</span></button></li>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Dark Mode</span>
+            </li>
             <li><button id="logoutBtnSidebar" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button></li>
         </ul>
     </div>
@@ -147,7 +160,8 @@
     <p>If you have any questions about this data, feel free to reach out.</p>
     <a href="aboutus.html#contact" class="contact-btn">Contact Us</a>
 </section>
-
+    <!-- FullCalendar JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="//code.tidio.co/pkunvsvycx7yt48uj2pce4avlqbf1ycj.js" async></script>
     <script src="scripts/data.js" ></script>
     <script src="scripts/script.js" ></script>

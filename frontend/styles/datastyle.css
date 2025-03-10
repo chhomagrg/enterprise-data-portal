@@ -10,6 +10,7 @@ body {
 main {
     padding-top: 250px;
     text-align: center;
+    padding-left: 100px;
 }
 
 h1 {
@@ -185,6 +186,7 @@ p {
 
 .contact {
     margin: 50px;
+    padding-left: 100px;
 }
 
 /* RESPONSIVENESS */

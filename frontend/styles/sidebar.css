@@ -6,6 +6,7 @@
     top: 0;
     width: 250px;
     height: 100vh;
+    min-height: 100vh;
     background: rgba(59, 83, 107, 0.6); 
     backdrop-filter: blur(5px); 
     color: white;
@@ -88,6 +89,7 @@
     width: 100%;
 }
 
+
 /* Sidebar Links */
 .sidebar-links {
     list-style: none;
@@ -157,15 +159,12 @@
 /* Sidebar Footer */
 .sidebar-footer {
     position: absolute;
-    bottom: 20px; 
-    left: 0;
+    bottom: 0;
     width: 100%;
     text-align: center;
     padding: 15px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
+
 
 /* Avatar */
 .sidebar-footer img.avatar {
@@ -296,4 +295,59 @@ body.dark-mode .btn {
     .hamburger-btn {
         display: block;
     }
+}
+
+/* Calendar Container */
+#sidebarCalendar {
+    width: 100%;
+    height: auto;
+    max-height: 220px; 
+    background: white;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.fc {
+    font-size: 10px;
+    width: 100%;
+}
+
+.fc-daygrid-day-number {
+    font-size: 10px;
+    color: black !important;
+    font-weight: bold;
+}
+
+.fc-daygrid-day {
+    background: white ;
+    border: 1px solid #ddd ;
+}
+
+.fc-day-today {
+    background: #3a66df !important;
+    color: black !important;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.fc-toolbar-title {
+    font-size: 12px !important;
+    font-weight: bold;
+    color: black !important;
+    text-transform: uppercase;
+    margin: 0 auto;
+}
+
+.fc-prev-button, .fc-next-button {
+    background-color: white !important;
+    border: none !important;
+    color: black !important;
+    font-size: 14px ;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Hide calendar when sidebar is collapsed */
+.sidebar.collapsed .calendar-section {
+    display: none;
 }

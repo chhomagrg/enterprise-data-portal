@@ -63,10 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
                 
-
-    
-    
-
 });
 
 // Hamburger Menu Functionality
@@ -85,6 +81,77 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Hamburger or Nav Menu not found!");
     }
 });
+
+document.addEventListener("DOMContentLoaded", async function () {
+    var calendarEl = document.getElementById("sidebarCalendar");
+
+    // Function to fetch public holidays from the API
+    async function fetchHolidays() {
+        try {
+            // Fetch holiday data from the public API
+            let response = await fetch("https://date.nager.at/api/v3/PublicHolidays/2025/US");
+
+            // Check if the response is successful
+            if (!response.ok) {
+                console.error("API Error:", response.status, response.statusText);
+                return [];
+            }
+
+            let holidays = await response.json();
+
+            // Format holidays for FullCalendar
+            return holidays.map(holiday => ({
+                title: holiday.localName, // Display holiday name
+                start: holiday.date, // Holiday date
+                backgroundColor: "#ffcc00", // Highlight color for holidays
+                extendedProps: { fullName: holiday.localName } // Store full name for click event
+            }));
+        } catch (error) {
+            console.error("Error fetching holidays:", error);
+            return [];
+        }
+    }
+
+    // Fetch holiday data before initializing the calendar
+    let holidayEvents = await fetchHolidays();
+
+    if (calendar) {
+        calendar.destroy(); // Destroy existing instance before reinitializing
+    }
+
+    // Initialize FullCalendar with configuration options
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "dayGridMonth", 
+        height: 250, 
+        aspectRatio: 2.5, 
+        nowIndicator: true, 
+        initialDate: new Date(), 
+        headerToolbar: {
+            start: "prev", 
+            center: "title", 
+            end: "next"
+        },
+        events: holidayEvents, // Load holiday data into the calendar
+        eventClick: function (info) {
+            // Show full holiday name when clicking on an event
+            alert("Holiday: " + info.event.extendedProps.fullName);
+        }
+    });
+
+    // Render the calendar inside the sidebar
+    calendar.render();
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 

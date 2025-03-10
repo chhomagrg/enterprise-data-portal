@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></head>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/sidebar.css">
+      <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css" rel="stylesheet">
 
     <style>
         .sidebar, .hamburger-btn {
@@ -65,7 +67,12 @@
             <li><a href="userProfile.html"><i class="fas fa-user-edit"></i> <span>View Profile</span></a></li>
         </ul>
     </div>
-
+    
+     <!-- Calendar Section -->
+   <div class="calendar-section">
+        <p class="sidebar-title">Calendar</p>
+        <div id="sidebarCalendar"></div>
+    </div>
         
     <!-- Account Section -->
     <div class="account-section">
@@ -173,17 +180,19 @@
         <button class="btn btn-outline-secondary btn-lg" onclick="window.location.href='aboutus.html'">Learn more</button>
     </div>
     </div>
-   
+  
 </header>
-<!-- Scripts -->
-<script src="scripts/auth.js" defer></script>
-<script src="scripts/script.js"></script>
-<script src="scripts/PasswordReset.js" defer></script>
-<script src="//code.tidio.co/pkunvsvycx7yt48uj2pce4avlqbf1ycj.js" async></script>
+
 
 
 </body>
-
+<!-- Scripts -->
+ <!-- FullCalendar JavaScript -->
+ <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+ <script src="scripts/PasswordReset.js" defer></script>
+ <script src="//code.tidio.co/pkunvsvycx7yt48uj2pce4avlqbf1ycj.js" async></script>
+ <script src="scripts/auth.js" defer></script>
+ <script src="scripts/script.js"></script>
 <footer>
     <div class="footer-container">
         <div class="footer-left">
