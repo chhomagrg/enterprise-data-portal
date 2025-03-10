@@ -85,13 +85,17 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", async function () {
     var calendarEl = document.getElementById("sidebarCalendar");
 
+    // Ensure calendar element exists before proceeding
+    if (!calendarEl) {
+        console.error("Calendar element not found!");
+        return; 
+    }
+
     // Function to fetch public holidays from the API
     async function fetchHolidays() {
         try {
-            // Fetch holiday data from the public API
             let response = await fetch("https://date.nager.at/api/v3/PublicHolidays/2025/US");
 
-            // Check if the response is successful
             if (!response.ok) {
                 console.error("API Error:", response.status, response.statusText);
                 return [];
@@ -99,12 +103,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             let holidays = await response.json();
 
-            // Format holidays for FullCalendar
             return holidays.map(holiday => ({
-                title: holiday.localName, // Display holiday name
-                start: holiday.date, // Holiday date
-                backgroundColor: "#ffcc00", // Highlight color for holidays
-                extendedProps: { fullName: holiday.localName } // Store full name for click event
+                title: holiday.localName,
+                start: holiday.date,
+                backgroundColor: "#ffcc00",
+                extendedProps: { fullName: holiday.localName }
             }));
         } catch (error) {
             console.error("Error fetching holidays:", error);
@@ -112,28 +115,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // Fetch holiday data before initializing the calendar
     let holidayEvents = await fetchHolidays();
 
-    if (calendar) {
-        calendar.destroy(); // Destroy existing instance before reinitializing
+    // Ensure FullCalendar does not initialize multiple times
+    if (calendarEl.innerHTML.trim() !== "") {
+        calendarEl.innerHTML = ""; // Clear any existing content
     }
 
-    // Initialize FullCalendar with configuration options
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth", 
-        height: 250, 
-        aspectRatio: 2.5, 
-        nowIndicator: true, 
-        initialDate: new Date(), 
+        initialView: "dayGridMonth",
+        height: 250,
+        aspectRatio: 2.5,
+        nowIndicator: true,
+        initialDate: new Date(),
         headerToolbar: {
-            start: "prev", 
-            center: "title", 
+            start: "prev",
+            center: "title",
             end: "next"
         },
-        events: holidayEvents, // Load holiday data into the calendar
+        events: holidayEvents,
         eventClick: function (info) {
-            // Show full holiday name when clicking on an event
             alert("Holiday: " + info.event.extendedProps.fullName);
         }
     });
