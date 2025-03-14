@@ -1,55 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Slider functionality
-    const slider = document.querySelector('.slider .list');
-    const slides = document.querySelectorAll('.slider .item');
-    const dots = document.querySelectorAll('.dots li');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let interval;
-
-    function showSlide(index) {
-        slider.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        showSlide(currentIndex);
-    }
-
-    function startAutoSlide() {
-        interval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoSlide() {
-        clearInterval(interval);
-    }
-
-    startAutoSlide();
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopAutoSlide();
-            currentIndex = index;
-            showSlide(currentIndex);
-            startAutoSlide();
-        });
-    });
-
-    document.getElementById('prev').addEventListener('click', () => {
-        stopAutoSlide();
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        showSlide(currentIndex);
-        startAutoSlide();
-    });
-
-    document.getElementById('next').addEventListener('click', () => {
-        stopAutoSlide();
-        nextSlide();
-        startAutoSlide();
-    });
-
     // Navbar active link highlighting
     const navLinks = document.querySelectorAll('.nav-links li a');
     const currentPage = window.location.pathname.split('/').pop().toLowerCase();
@@ -82,66 +31,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-document.addEventListener("DOMContentLoaded", async function () {
-    var calendarEl = document.getElementById("sidebarCalendar");
+// Search Bar JavaScript 
 
-    // Ensure calendar element exists before proceeding
-    if (!calendarEl) {
-        console.error("Calendar element not found!");
-        return; 
-    }
-
-    // Function to fetch public holidays from the API
-    async function fetchHolidays() {
-        try {
-            let response = await fetch("https://date.nager.at/api/v3/PublicHolidays/2025/US");
-
-            if (!response.ok) {
-                console.error("API Error:", response.status, response.statusText);
-                return [];
-            }
-
-            let holidays = await response.json();
-
-            return holidays.map(holiday => ({
-                title: holiday.localName,
-                start: holiday.date,
-                backgroundColor: "#ffcc00",
-                extendedProps: { fullName: holiday.localName }
-            }));
-        } catch (error) {
-            console.error("Error fetching holidays:", error);
-            return [];
-        }
-    }
-
-    let holidayEvents = await fetchHolidays();
-
-    // Ensure FullCalendar does not initialize multiple times
-    if (calendarEl.innerHTML.trim() !== "") {
-        calendarEl.innerHTML = ""; // Clear any existing content
-    }
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth",
-        height: 250,
-        aspectRatio: 2.5,
-        nowIndicator: true,
-        initialDate: new Date(),
-        headerToolbar: {
-            start: "prev",
-            center: "title",
-            end: "next"
-        },
-        events: holidayEvents,
-        eventClick: function (info) {
-            alert("Holiday: " + info.event.extendedProps.fullName);
+    // Function to handle the search action
+    document.getElementById('searchBtn').addEventListener('click', function() {
+        const query = document.getElementById('searchInput').value;
+        if (query) {
+            // Redirect to search results page with query (you can replace the URL)
+            window.location.href = 'search-results.html?q=' + encodeURIComponent(query);
         }
     });
 
-    // Render the calendar inside the sidebar
-    calendar.render();
-});
+    // Optional: Enable pressing Enter to trigger the search
+    document.getElementById('searchInput').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            document.getElementById('searchBtn').click();
+        }
+    });
 
 
 

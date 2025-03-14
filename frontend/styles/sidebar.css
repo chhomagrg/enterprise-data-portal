@@ -1,6 +1,6 @@
 /* Sidebar */
 .sidebar {
-    display: none;  /* Hide the sidebar initially */
+    display: flex;
     position: fixed;
     left: 0;
     top: 0;
@@ -24,9 +24,11 @@
     display: flex;
 }
 
-/* Collapsed Sidebar (Only Icons) */
+/* Collapsed Sidebar */
 .sidebar.collapsed {
-    width: 80px; 
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Sidebar Content */
@@ -41,7 +43,7 @@
 
 .hamburger-btn {
     position: fixed;
-    top: 0px; 
+    top: 20px; 
     left: 0; 
     z-index: 1001;
     background: none;
@@ -51,7 +53,7 @@
 }
 
 .hamburger-btn i {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: white;
 }
 
@@ -87,6 +89,7 @@
 .sidebar-account {
     margin: 20px 0;
     width: 100%;
+    position: fixed;
 }
 
 

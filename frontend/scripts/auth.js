@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("themeToggle");
     const sidebarToggle = document.getElementById("sidebarToggle");
     const calendarSection = document.querySelector(".calendar-section");
+    const sidebarIcon = document.getElementById("sidebarIcon");
 
     // Function to check authentication status across all pages
     function checkAuthStatus() {
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (sidebarToggle) sidebarToggle.style.display = "block";
             loadUserProfile(token);
+            initializeCalendar();
 
         } else {
             // Hide profile section and logout button, show login button
@@ -103,9 +105,11 @@ document.addEventListener("DOMContentLoaded", function () {
         sidebar.classList.toggle("collapsed");
 
         if (sidebar.classList.contains("collapsed")) {
-            if (calendarSection) calendarSection.style.display = "none"; // Hide calendar
+            sidebarIcon.classList.replace("fa-angle-double-left", "fa-angle-double-right");
+           
         } else {
-            if (calendarSection) calendarSection.style.display = "block"; // Show calendar
+            sidebarIcon.classList.replace("fa-angle-double-right", "fa-angle-double-left");
+           
         }
 
 
@@ -298,6 +302,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function () {
             localStorage.removeItem("token");
+            localStorage.removeItem("theme"); // Reset theme
+
+            // Reset theme to default (light mode)
+            document.body.classList.remove("dark-mode");
+
+            // Uncheck theme toggle switch
+            if (themeToggle) {
+                themeToggle.checked = false;
+            }
 
             alert("Logged out successfully!");
 
@@ -366,6 +379,67 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    async function initializeCalendar() {
+        var calendarEl = document.getElementById("sidebarCalendar");
+
+        if (!calendarEl) {
+            console.error("Calendar element not found!");
+            return;
+        }
+
+        async function fetchHolidays() {
+            try {
+                let response = await fetch("https://date.nager.at/api/v3/PublicHolidays/2025/US");
+
+                if (!response.ok) {
+                    console.error("API Error:", response.status, response.statusText);
+                    return [];
+                }
+
+                let holidays = await response.json();
+
+                return holidays.map(holiday => ({
+                    title: holiday.localName,
+                    start: holiday.date,
+                    backgroundColor: "#ffcc00",
+                    extendedProps: { fullName: holiday.localName }
+                }));
+            } catch (error) {
+                console.error("Error fetching holidays:", error);
+                return [];
+            }
+        }
+
+        let holidayEvents = await fetchHolidays();
+
+        // Clear previous calendar content before rendering
+        calendarEl.innerHTML = "";
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            height: 250,
+            aspectRatio: 2.5,
+            nowIndicator: true,
+            initialDate: new Date(),
+            headerToolbar: {
+                start: "prev",
+                center: "title",
+                end: "next"
+            },
+            events: holidayEvents,
+            eventClick: function (info) {
+                alert("Holiday: " + info.event.extendedProps.fullName);
+            }
+        });
+        // Render the calendar
+        calendar.render();
+    }
+
     // Run the checkAuthStatus function on page load
     checkAuthStatus();
+    calendar.render();
+    setTimeout(() => {
+        initializeCalendar();
+    }, 100);
+
 });

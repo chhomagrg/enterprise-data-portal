@@ -193,6 +193,7 @@ main {
 @media (max-width: 768px) {
     .faq-section {
         padding: 30px 15px;
+        margin-left: 80px;
     }
 
     .faq-title {

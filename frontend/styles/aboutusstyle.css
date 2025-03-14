@@ -1,11 +1,4 @@
 /* Global Styles */
-html, body {
-    background-color: white;  
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
 /* CONTAINER & GRID SYSTEM */
 .container {
     width: 90%;
@@ -47,7 +40,7 @@ html, body {
 
 /* HERO SECTION */
 .hero-section {
-    height: 60vh; 
+    min-height: 60vh; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,6 +113,7 @@ html, body {
     background: linear-gradient(135deg, #8398b6 0%, #13113b 100%);
     padding: 60px 20px;
     text-align: center; 
+    
 }
 
 /* Heading */
@@ -193,16 +187,19 @@ html, body {
 .timeline {
     list-style-type: none;
     position: relative;
+    align-items: center;
     padding-left: 60px;
 }
 
 .timeline-item {
     position: relative;
+    align-items: center;
     margin-bottom: 40px;
     transition: all 0.3s ease-in-out;
 }
 
 .timeline-item .timeline-icon {
+    align-items: center;
     position: absolute;
     left: -60px;
     top: 0;
@@ -259,6 +256,8 @@ html, body {
 .company-history {
     background-color: #f4f4f4;
     padding: 60px 0;
+    margin-left: 80px;
+
 }
 
 /* TEAM MEMBERS SECTION */

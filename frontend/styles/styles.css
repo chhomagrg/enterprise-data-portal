@@ -6,8 +6,10 @@
 }
 
 html, body {
-    height: 100%;
+    height: 100% !important; 
     margin: 0;
+
+    
 }
 
 body {
@@ -18,7 +20,22 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
 }
+
+/* Keyframes for Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        
+    }
+    to {
+        opacity: 1;
+        
+    }
+}
+
 
 /* Navbar Styling */
 .navbar {
@@ -26,7 +43,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #13113b;
-    padding: 1.2em;
+    padding: 0.8em 1.5em;
     color: white;
     position: fixed;
     width: 100%;
@@ -37,16 +54,27 @@ body {
 }
 
 /* Logo */
+.logo {
+    flex: 1;
+    margin-left: 1em;
+}
 .logo img {
-    height: 60px;
+    height: 2.8em;
     
 }
 
 /* Navigation Links */
+.nav-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end; 
+    align-items: center;
+}
 .nav-links {
     list-style: none;
     display: flex;
     gap: 1em;
+    justify-content: space-between; 
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     align-items: center;
 }
@@ -65,7 +93,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: white;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.8em;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
     font-size: 1.4em;
 }
@@ -91,6 +119,7 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    margin-left: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -159,6 +188,10 @@ body {
         text-align: center;
     }
 
+    body.dark-mode .nav-links {
+        background-color: #2d2d2d !important; 
+    }
+
     .nav-links.active {
         display: flex;
     }
@@ -176,17 +209,22 @@ body {
     }
 }
 
-/* Keyframes for Animation */
+/* Keyframes for Text Fade-In */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
+
+/* Apply fade-in only to text elements */
+h1, h2, h3, p, span, a, li {
+    animation: fadeIn 2s ease-in forwards;
+    opacity: 0; /* Ensures it's hidden before animation starts */
+}
+
 
 /* Ensure the button is not hidden or overlapped on mobile */
 @media (max-width: 768px) {
@@ -457,7 +495,7 @@ footer {
 body.dark-mode {
     background-color: #121212;
     color: white;
-}
+} 
 
 /* Dark Mode Overlay */
 body.dark-mode .overlay {
@@ -473,19 +511,7 @@ body.dark-mode .navbar {
     background-color: #2d2d2d;
 }
 
-/* Sidebar in Dark Mode */
-body.dark-mode .sidebar {
-    background:  #2d2d2d;
-}
 
-/* Sidebar Links */
-body.dark-mode .sidebar-links a {
-    color: #ddd;
-}
-
-body.dark-mode .sidebar-links a:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
 
 /* Buttons */
 body.dark-mode .btn {
