@@ -99,6 +99,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load sidebar state from localStorage
     if (localStorage.getItem("sidebarState") === "collapsed") {
         sidebar.classList.add("collapsed");
+    } else {
+        sidebar.classList.remove("collapsed");
     }
 
     // Toggle sidebar on button click
@@ -106,11 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
         sidebar.classList.toggle("collapsed");
 
         if (sidebar.classList.contains("collapsed")) {
-            sidebarIcon.classList.replace("fa-angle-double-left", "fa-angle-double-right");
-           
-        } else {
-            sidebarIcon.classList.replace("fa-angle-double-right", "fa-angle-double-left");
-           
+            localStorage.setItem("sidebarState", "collapsed"); // Store state         
+        } else { 
+            localStorage.setItem("sidebarState", "expanded"); // Store state
         }
 
 
