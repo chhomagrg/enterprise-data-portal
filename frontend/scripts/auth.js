@@ -21,12 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerMessage = document.getElementById("registerMessage");
 
     // Password Reset Elements
-    const resetPasswordModal = document.getElementById("passwordResetModal");  // Fixed id here
+    const resetPasswordModal = document.getElementById("resetPasswordModal");  
     const closeResetPasswordModal = document.getElementById("closeResetPasswordModal");
     const resetForm = document.getElementById("resetForm");
     const resetEmailInput = document.getElementById("resetEmail");
     const resetMessage = document.getElementById("resetMessage");
     const resetSubmitBtn = document.getElementById("resetSubmitBtn");
+    const backToLogin = document.getElementById("backToLogin"); 
 
     // Side nav bar
     const token = localStorage.getItem("token");
@@ -336,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = resetEmailInput.value;
 
             try {
-                const response = await fetch("http://localhost:5000/reset-password", {
+                const response = await fetch("http://localhost:5000/api/users/reset-password", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -378,7 +379,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    if (backToLogin) {
+        backToLogin.addEventListener("click", function (event) {
+            event.preventDefault();
+            authModal.style.display = "block"; // Show login modal
+        });
+    }
 
+    
     async function initializeCalendar() {
         var calendarEl = document.getElementById("sidebarCalendar");
 

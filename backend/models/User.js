@@ -7,7 +7,9 @@ const UserSchema = new mongoose.Schema({
     username: { type: String, unique: true, sparse: true }, 
     bio: { type: String, default: "" },
     role: { type: String, default: "" },
-	avatar: { type: String, default: "" }
+	avatar: { type: String, default: "" },
+    resetToken: { type: String, default: null },
+    resetTokenExpiration: { type: Number, default: null }
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", UserSchema);

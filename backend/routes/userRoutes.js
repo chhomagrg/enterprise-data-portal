@@ -3,9 +3,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 const router = express.Router();
-const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key"; 
+const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";
 
 /**
  * @route   POST /api/users/register
@@ -172,12 +174,109 @@ router.put("/profile", authMiddleware, async (req, res) => {
         console.error("Profile update error:", error);
         res.status(500).json({ message: "Server error. Please try again." });
     }
-
-    
 });
 
+/**
+ * @route   POST /api/users/reset-password
+ * @desc    Send password reset email
+ * @access  Public
+ */
+router.post("/reset-password", async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({ message: "No account found with this email." });
+        }
+
+        // Generate a secure reset token
+        const token = crypto.randomBytes(32).toString("hex");
+
+        // Set expiration to 1 hour from now
+        const expirationTime = Date.now() + 3600000; 
+
+        // Save resetToken and expiration time in database
+        await User.updateOne(
+            { email },
+            { $set: { resetToken: token, resetTokenExpiration: expirationTime } }
+        );
 
 
+        // Send reset email
+        const resetLink = `http://localhost:5000/reset-password.html?token=${token}`;
+        const mailOptions = {
+            from: "chhomagurung@gmail.com",
+            to: email,
+            subject: "Password Reset Request",
+            text: `Click here to reset your password: ${resetLink}`
+        };
+
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "chhomagurung@gmail.com",
+                pass: "xiin rdkh rlye egav",
+            },
+        });
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error("Error sending email:", error);
+                return res.status(500).json({ message: "Error sending email. Please try again later." });
+            }
+            res.status(200).json({ message: "Password reset instructions sent to your email.", token });
+        });
+    } catch (error) {
+        console.error("Server error in password reset:", error);
+        res.status(500).json({ message: "Server error. Please try again." });
+    }
+});
+
+/**
+ * @route   POST /api/users/reset-password/:token
+ * @desc    Reset the user's password
+ * @access  Public
+ */
+router.post("/reset-password/:token", async (req, res) => {
+    try {
+        const { token } = req.params;
+        const { newPassword } = req.body;
+
+        if (!token || !newPassword) {
+            return res.status(400).json({ message: "Invalid request. Token or new password missing." });
+        }
+
+        // Find user by resetToken and ensure token is still valid
+        const user = await User.findOne({
+            resetToken: token.trim(),
+            resetTokenExpiration: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: "Invalid or expired token." });
+        }
+
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update user password and remove reset token
+        user.password = hashedPassword;
+        user.resetToken = undefined;
+        user.resetTokenExpiration = undefined;
+        await user.save();
+
+        res.json({ message: "Password has been successfully reset. You can now log in." });
+    } catch (error) {
+        console.error("Error resetting password:", error);
+        res.status(500).json({ message: "Server error. Please try again." });
+    }
+});
 
 // EXPORT THE ROUTER
 module.exports = router;

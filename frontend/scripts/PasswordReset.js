@@ -1,86 +1,92 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Password Reset Elements
-  const resetPasswordModal = document.getElementById("resetPasswordModal");
-  const resetSubmitBtn = document.getElementById("resetSubmitBtn");
-  const resetEmailInput = document.getElementById("resetEmail");
-  const resetMessage = document.getElementById("resetMessage");
+    // Selecting elements
+    const resetForm = document.getElementById("resetPasswordForm");
+    const newPasswordInput = document.getElementById("newPassword");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+    const resetSubmitBtn = document.getElementById("resetSubmitBtn");
+    const successMessage = document.getElementById("successMessage");
+    const errorMessage = document.getElementById("errorMessage");
+    const backToLoginLink = document.querySelector(".back-to-login a");
+    const authModal = document.getElementById("authModal");
 
-  // Forgot Password Link
-  const forgotPasswordLink = document.getElementById("forgot-password-link");
+    if (!resetForm || !newPasswordInput || !confirmPasswordInput || !resetSubmitBtn) {
+        console.error(" Error: One or more input fields/buttons not found!");
+        return;
+    }
 
-  // If the forgot password link is clicked, show the reset password modal
-  if (forgotPasswordLink) {
-      forgotPasswordLink.addEventListener("click", function (event) {
-          event.preventDefault(); // Prevent default behavior (e.g., navigating)
-          resetPasswordModal.style.display = "block";  // Show the reset password modal
-      });
-  }
+    // Extract token from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
-  // Close the password reset modal when clicking outside the modal or on the close button
-  const closeResetPasswordModal = document.getElementById("closeResetPasswordModal");
-  if (closeResetPasswordModal) {
-      closeResetPasswordModal.addEventListener("click", function () {
-          resetPasswordModal.style.display = "none"; // Hide modal
-      });
+    if (!token) {
+        console.error("No reset token found in URL!");
+        errorMessage.textContent = "Invalid or missing reset token.";
+        errorMessage.style.display = "block";
+        return;
+    }
 
-      window.addEventListener("click", function (event) {
-          if (event.target === resetPasswordModal) {
-              resetPasswordModal.style.display = "none"; // Hide modal
-          }
-      });
-  }
+    resetForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-  // Handle Password Reset Submission
-  if (resetSubmitBtn) {
-      resetSubmitBtn.addEventListener("click", async function (event) {
-          event.preventDefault(); // Prevent form from submitting the default way
+        const newPassword = newPasswordInput.value.trim();
+        const confirmPassword = confirmPasswordInput.value.trim();
 
-          const email = resetEmailInput.value.trim(); // Get the email value from the input field
+        // Validate passwords
+        if (!newPassword || !confirmPassword) {
+            errorMessage.textContent = "Both fields are required!";
+            errorMessage.style.display = "block";
+            return;
+        }
 
-          // Basic email validation
-          if (!email) {
-              resetMessage.textContent = "Please enter a valid email address.";
-              resetMessage.classList.add("error");
-              resetMessage.classList.remove("success");
-              resetMessage.style.display = "block";
-              return;
-          }
+        if (newPassword.length < 6) {
+            errorMessage.textContent = "Password must be at least 6 characters!";
+            errorMessage.style.display = "block";
+            return;
+        }
 
-          try {
-              // Send the email for password reset to the backend
-              const response = await fetch("http://localhost:5000/reset-password", {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({ email }) // Send email in request body
-              });
+        if (newPassword !== confirmPassword) {
+            errorMessage.textContent = "Passwords do not match!";
+            errorMessage.style.display = "block";
+            return;
+        }
 
-              const data = await response.json(); // Parse response as JSON
+        try {
+            // Send password reset request
+            const response = await fetch(`http://localhost:5000/api/users/reset-password/${token}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ newPassword }),
+            });
 
-              if (response.ok) {
-                  // Success response handling
-                  resetMessage.textContent = data.message || "Password reset email sent successfully!";
-                  resetMessage.classList.add("success");
-                  resetMessage.classList.remove("error");
-                  resetMessage.style.display = "block";
+            const data = await response.json();
 
-                  // Optionally, clear the input after successful submission
-                  resetEmailInput.value = "";
-              } else {
-                  // Error response handling
-                  resetMessage.textContent = data.message || "Error sending password reset email.";
-                  resetMessage.classList.add("error");
-                  resetMessage.classList.remove("success");
-                  resetMessage.style.display = "block";
-              }
-          } catch (error) {
-              // Handle network or other unexpected errors
-              resetMessage.textContent = "An error occurred. Please try again.";
-              resetMessage.classList.add("error");
-              resetMessage.classList.remove("success");
-              resetMessage.style.display = "block";
-          }
-      });
-  }
+            if (response.ok) {
+                successMessage.textContent = data.message || "Password reset successfully!";
+                successMessage.style.display = "block";
+                errorMessage.style.display = "none";
+
+                // Ensure user is NOT logged in automatically
+                localStorage.removeItem("token"); 
+
+            } else {
+                errorMessage.textContent = data.message || "Error resetting password.";
+                errorMessage.style.display = "block";
+            }
+        } catch (error) {
+            console.error("Password reset error:", error);
+            errorMessage.textContent = "An error occurred. Please try again.";
+            errorMessage.style.display = "block";
+        }
+    });
+
+    // Open Login Modal when clicking "Back to Login"
+    if (backToLoginLink) {
+        backToLoginLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            if (authModal) {
+                authModal.style.display = "block"; // Show the login modal
+            }
+        });
+    }
 });
