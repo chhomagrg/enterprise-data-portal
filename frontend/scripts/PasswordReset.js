@@ -8,9 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const errorMessage = document.getElementById("errorMessage");
     const backToLoginLink = document.querySelector(".back-to-login a");
     const authModal = document.getElementById("authModal");
+    const resetPasswordModal = document.getElementById("resetPasswordModal");  // Ensure the reset password modal is selected
 
     if (!resetForm || !newPasswordInput || !confirmPasswordInput || !resetSubmitBtn) {
-        console.error(" Error: One or more input fields/buttons not found!");
+        console.error("Error: One or more input fields/buttons not found!");
         return;
     }
 
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Handle form submission
     resetForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 errorMessage.style.display = "none";
 
                 // Ensure user is NOT logged in automatically
-                localStorage.removeItem("token"); 
+                localStorage.removeItem("token");
 
             } else {
                 errorMessage.textContent = data.message || "Error resetting password.";
@@ -83,9 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (backToLoginLink) {
         backToLoginLink.addEventListener("click", function (event) {
             event.preventDefault();
-            
+
+            // Hide the reset password modal
+            if (resetPasswordModal) {
+                resetPasswordModal.style.display = "none";  // Hide reset password modal
+            }
+
+            // Show the login modal
             if (authModal) {
-                authModal.style.display = "block"; // Show the login modal
+                authModal.style.display = "block";  // Show login modal
             }
         });
     }

@@ -1,0 +1,650 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100% !important; 
+    margin: 0;
+}
+
+body {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+/* Keyframes for Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #13113b;
+    padding: 0.8em 1.5em;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Logo */
+.logo {
+    flex: 1;
+    margin-left: 0.4em;
+}
+.logo img {
+    height: 2.8em;
+}
+
+/* Navigation Links */
+.nav-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end; 
+    align-items: center;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+    justify-content: space-between; 
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    align-items: center;
+}
+
+#profileLink i {
+    font-size: 28px; 
+    vertical-align: middle;
+}
+
+.nav-links li {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5em 0.8em;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-size: 1.4em;
+}
+
+.nav-links a:hover {
+    color: #9de5f9;
+    transform: scale(1.1);
+}
+
+/* Active link styling */
+.nav-links .active {
+    background-color: #496da7;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Login Button */
+#loginBtn, #logoutBtn {
+    background-color: #115a6a;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Default (Desktop) Style - Keep the original size */
+#loginBtn {
+    padding: 12px 24px;
+    font-size: 16px;
+    width: auto;
+}
+
+/* Mobile Responsive - Smaller Login Button */
+@media (max-width: 768px) {
+    #loginBtn, #logoutBtn { 
+        padding: 6px 12px; /* Further reduces padding */
+        font-size: 14px; /* Makes text smaller */
+        min-width: 80px; /* Even smaller minimum width */
+        width: auto; /* Prevents stretching */
+        max-width: 150px; /* Limits the maximum width */
+    }
+
+    /* Adjust layout for logout button if needed */
+    #logoutBtn {
+        margin-left: 0; /* Prevents unnecessary margin on small screens */
+    }
+
+    /* Ensure the button shrinks by controlling the container size */
+    .navbar {
+        padding: 0.5em 1em; /* Adjust the navbar padding for smaller screens */
+    }
+
+    /* Ensure button container doesn't restrict button size */
+    #loginBtn, #logoutBtn {
+        display: inline-block;
+        width: auto; /* Make sure the width doesn't get overridden */
+    }
+}
+
+/* Button Hover Effect */
+#loginBtn:hover, #logoutBtn:hover {
+    background-color: #9900ff;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(153, 0, 255, 0.5);
+}
+
+/* Login Form Styling */
+.login-container {
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Make the Login Form Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%; /* Ensures the form takes up most of the screen on mobile */
+    }
+}
+
+
+
+/* Hamburger Menu (Hidden by Default) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease-in-out;
+}
+
+.bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hamburger Menu Animation */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 1em;
+    }
+
+    /* Show hamburger menu */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide navigation links by default */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #13113b;
+        padding: 10px 0;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    /* Dark mode support */
+    body.dark-mode .nav-links {
+        background-color: #2d2d2d !important;
+    }
+
+    /* Show nav links when active */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 10px 0;
+    }
+
+    /* Move login button to bottom */
+    #loginBtn, #logoutBtn {
+        width: 90%;
+        text-align: center;
+        margin-top: 15px;
+        padding: 12px;
+        font-size: 1.2em;
+    }
+}
+
+
+/* Keyframes for Text Fade-In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply fade-in only to text elements */
+h1, h2, h3, p, span, a, li {
+    animation: fadeIn 2s ease-in forwards;
+    opacity: 0; /* Ensures it's hidden before animation starts */
+}
+
+
+/* Ensure the button is not hidden or overlapped on mobile */
+@media (max-width: 768px) {
+    .login-button {
+        display: block !important;
+        width: 100%; /* or adjust as necessary */
+        margin: 10px 0; /* to create space around it */
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* Body*/
+
+.page-header.header.container-fluid {
+    background-image: url('images/Photo2.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100vh; 
+}
+
+/* Responsive Overlay */
+.overlay {
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left: 50%;
+    top: 20em;
+    background: rgba(235, 232, 232, 0.6);
+    border-radius: 10px;
+    transform: translateX(-50%);
+}
+
+/* Centered Description */
+.description {
+    left: 50%;
+    position: absolute;
+    top: 45%;
+    transform: translate(-50%, -55%);
+    text-align: center;
+}
+
+.description h1 {
+    color: white;
+    font-size: 1.8rem;
+    padding: 10px 0;
+}
+
+.description p {
+    color: #13113b;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 10px 0;
+}
+
+.description button {
+    background: #115a6a;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.description button:hover {
+    border: 1px solid #fff;
+    background: #9900ff;
+    color: #fff;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1200px) {
+    .overlay {
+        width: 60%;
+        height: 35%;
+    }
+}
+
+@media (max-width: 992px) {
+    .overlay {
+        width: 70%;
+        height: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay {
+        width: 80%;
+        height: 45%;
+    }
+
+    .description h1 {
+        font-size: 1.6rem;
+    }
+
+    .description p {
+        font-size: 1.3rem;
+    }
+
+    .description button {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .overlay {
+        width: 90%;
+        height: 50%;
+    }
+}
+
+
+
+
+/* Footer styles */
+footer {
+    background-color: #13113b;
+    color: white;
+    padding: 1.4em;
+    font-size: 1.4em;
+   
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+    padding-left: 100px;
+}
+
+.footer-left a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
+}
+
+.footer-right a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer-right a:hover {
+    opacity: 0.7;
+}
+
+.social-icon {
+    font-size: 20px;
+}
+
+
+
+
+#success-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #d4edda; 
+    color: #155724;
+    border-radius: 6px;
+}
+
+/* Hide modal by default */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Show modal when the 'show' class is added */
+.modal.show {
+    display: flex;
+}
+
+/* Modal content box */
+.modal-content {
+    background: #b3c6ff !important;
+    padding: 25px !important; 
+    width: 350px !important;
+    margin: auto !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Close button */
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 16px;
+}
+
+#authSubmitBtn, #registerSubmitBtn {
+    background: green;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#authSubmitBtn:hover, #registerSubmitBtn:hover {
+    background: darkgreen;
+}
+
+.message {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Dark Mode Styles */
+
+/* Apply Dark Mode to Body */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+} 
+
+/* Dark Mode Overlay */
+body.dark-mode .overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode p {
+    color: white;
+}
+
+/* Navbar in Dark Mode */
+body.dark-mode .navbar {
+    background-color: #2d2d2d;
+}
+
+
+
+/* Buttons */
+body.dark-mode .btn {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #555;
+}
+
+/* Login & Logout Buttons */
+body.dark-mode #loginBtn,
+body.dark-mode #logoutBtn {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode #loginBtn:hover,
+body.dark-mode #logoutBtn:hover {
+    background-color: #555;
+}
+
+/* Hamburger Menu */
+body.dark-mode .bar {
+    background-color: white;
+}
+
+/* Footer in Dark Mode */
+body.dark-mode footer {
+    background-color: #2d2d2d;
+    color: #ddd;
+}
+
+/* Links in Dark Mode */
+body.dark-mode a {
+    color: #fbfbfc;
+}
+
+body.dark-mode a:hover {
+    color: #02010e;
+}
+
+/* Modals in Dark Mode */
+body.dark-mode .modal-content {
+    background: #242424 !important;
+    color: white !important;
+}
+
+body.dark-mode .modal-content input {
+    background: #333;
+    color: white;
+    border: 1px solid gray;
+}
+
+body.dark-mode .message.success {
+    background-color: #155724;
+    color: #d4edda;
+    border: 1px solid #1b6834;
+}
+
+body.dark-mode .message.error {
+    background-color: #721c24;
+    color: #f8d7da;
+    border: 1px solid #842029;
+}
+
+body.dark-mode #loginBtn:hover, 
+body.dark-mode #logoutBtn:hover {
+    background-color: #333333;  
+    transform: scale(1.1);
+    box-shadow: 0px 4px 12px rgba(51, 51, 51, 0.6);
+}
+
+/* Dark Mode Active Link */
+body.dark-mode .nav-links .active {
+    background-color: #474d50; 
+    color: #ffffff;
+}
+
+
+body.dark-mode .nav-links {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}

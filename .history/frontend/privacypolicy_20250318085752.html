@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Maxx Energy</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></head>
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/privacypolicy.css">
+
+    <style>
+        .sidebar, .hamburger-btn {
+            display: none;  /* Ensure both sidebar and hamburger button are hidden before JS runs */
+        }
+        
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img id="navbarLogo" src="images/logo.png" alt="MAXX ENERGY Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+    </ul>
+
+    <!-- Login/Logout Button -->
+    <button id="loginBtn" class="btn">Login</button>
+    <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
+        
+    <!-- Hamburger Menu -->
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>   
+</nav>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar">
+    <!-- Sidebar Logo Section -->
+    <div class="sidebar-logo">
+        <a href="#" id="sidebarToggle"></a>
+            <img id="sidebarLogo" src="images/logo-2.png" alt="MAXX ENERGY Logo">
+        </a>
+    </div>
+    <!-- Overview Section -->
+    <div class="overview-section">
+        <p class="sidebar-title">OVERVIEW</p>
+        <ul class="sidebar-links">
+            <li><a href="data.html" id="dataLink"><i class="fas fa-chart-bar"></i> <span>Dashboard</span></a></li>
+            <li><a href="userProfile.html"><i class="fas fa-user-edit"></i> <span>View Profile</span></a></li>
+        </ul>
+    </div>
+
+     <!-- Calendar Section -->
+   <div class="calendar-section">
+        <p class="sidebar-title">Calendar</p>
+        <div id="sidebarCalendar"></div>
+    </div>   
+     <!-- Account Section -->
+     <div class="account-section">
+        <p class="sidebar-title">ACCOUNT</p>
+        <ul class="sidebar-links">
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Dark Mode</span>
+            </li>
+            <li><button id="logoutBtnSidebar" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <img id="sidebarAvatar" class="avatar" src="images/default-avatar.png" alt="User Avatar">
+        <h3 id="sidebarUsername">User Name</h3>
+    </div>
+</aside>
+
+<!-- Login Modal -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="authTitle">Login</h2>
+
+        <!-- Message Box for Login -->
+        <p id="loginMessage" class="message"></p>
+
+        <form id="authForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" id="authSubmitBtn">Login</button>
+        </form>
+        <p id="toggleAuth">Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
+    </div>
+</div>
+
+<!-- Registration Modal -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeRegister">&times;</span>
+        <h2>New User Registration</h2>
+
+        <!-- Message Box for Registration -->
+        <p class="error-text hidden" style="color: red;"></p> 
+
+        <form id="registrationForm">
+            <div id="formFields">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="registerPassword">Password</label> 
+                    <input type="password" id="registerPassword" required minlength="6">
+                </div>
+                <button type="submit" id="registerSubmitBtn" class="custom-btn">Register</button>
+            </div>
+        </form>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+    </div>
+</div>
+
+    <div class="title-container">
+        <h1>Privacy Policy</h1>
+        <p>How Maxx Energy handles your data</p>
+        <p><strong>Updated: 2/14/2025</strong></p>
+    </div>
+    
+    <div class="content">
+        <div class="privacy-sidebar">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#information">Information We Collect</a></li>
+                <li><a href="#usage">How We Use Your Information</a></li>
+                <li><a href="#sharing">How We Share Your Information</a></li>
+                <li><a href="#security">Data Security</a></li>
+                <li><a href="#rights">Your Rights</a></li>
+                <li><a href="#thirdparty">Third-Party Links</a></li>
+                <li><a href="#changes">Changes to This Policy</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+        
+        <div class="container">
+            <h2 id="introduction">1. Introduction</h2>
+            <p>Welcome to Maxx Energy! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+            
+            <h2 id="information">2. Information We Collect</h2>
+            <p>We may collect personal information such as your name, email address, phone number, and website usage data.</p>
+            
+            <h2 id="usage">3. How We Use Your Information</h2>
+            <p>We use the information to provide and improve our services, respond to inquiries, and analyze website performance.</p>
+            
+            <h2 id="sharing">4. How We Share Your Information</h2>
+            <p>We do not sell your personal information. However, we may share it with service providers assisting with website operations or legal authorities if required by law.</p>
+            
+            <h2 id="security">5. Data Security</h2>
+            <p>We implement security measures to protect your information, but we cannot guarantee absolute security.</p>
+            
+            <h2 id="rights">6. Your Rights and Choices</h2>
+            <p>You may have rights to access, update, or delete your personal data and opt out of marketing communications.</p>
+            
+            <h2 id="thirdparty">7. Third-Party Links</h2>
+            <p>Our website may contain links to third-party sites. We encourage you to review their privacy policies before providing any information.</p>
+            
+            <h2 id="changes">8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated effective date.</p>
+            
+            <h2 id="contact">9. Contact Us</h2>
+            <p class="contact">If you have any questions about this Privacy Policy, please contact us at: <strong><a href="mailto:support@maxxenergy.com">support@maxxenergy.com</a></strong></p>
+        </div>
+    </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src = "scripts/auth.js" defer></script>
+<script src="scripts/script.js" defer></script>
+<footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            <a href="privacypolicy.html">Privacy Policy</a> |
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-right">
+            <a href="https://www.linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+</html>

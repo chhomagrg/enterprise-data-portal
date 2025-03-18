@@ -1,0 +1,162 @@
+/* User profile page */
+body {
+    background: #ffffff;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.btn {
+    cursor: pointer;
+}
+
+.btn-default {
+    border-color: rgba(24, 28, 33, 0.1);
+    background: rgba(0, 0, 0, 0);
+    color: #4E5155;
+}
+
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background: transparent;
+    color: #26B4FF;
+}
+
+.btn-outline-primary:hover {
+    background: #26B4FF;
+    color: #ffffff;
+}
+
+/* Social Buttons */
+.btn-facebook {
+    background: #3B5998;
+    color: #fff;
+}
+
+.btn-instagram {
+    background: #000;
+    color: #fff;
+}
+
+/* Card Styling */
+.card {
+    background-clip: padding-box;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Links */
+.account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.account-settings-links .list-group-item.active {
+    font-weight: bold !important;
+    color: #4e5155 !important;
+    background: transparent !important;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.container {
+    padding: 60px;
+}
+
+/* Avatar Selection */
+.avatar-options img {
+    width: 60px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.avatar-option:hover {
+    transform: scale(1.1);
+    border: 2px solid #26B4FF;
+}
+
+.selected-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #26B4FF;
+}
+
+/* Dark Mode for User Profile Page */
+body.dark-mode {
+    background: #1e1e1e;
+    color: #e0e0e0;
+}
+
+/* Dark Mode - Card */
+body.dark-mode .card {
+    background: #2a2a2a;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+/* Dark Mode - Buttons */
+body.dark-mode .btn-default {
+    background: #3a3a3a;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #dcdcdc;
+}
+
+body.dark-mode .btn-outline-primary {
+    border-color: #7aa5d2;
+    color: #7aa5d2;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+    background: #7aa5d2;
+    color: #1e1e1e;
+}
+
+/* Dark Mode - Form Elements */
+body.dark-mode .form-control {
+    background: #2f2f2f;
+    border: 1px solid #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-control:focus {
+    border-color: #7aa5d2;
+    background: #3a3a3a;
+}
+
+/* Dark Mode - Account Settings Sidebar */
+body.dark-mode .account-settings-links .list-group-item {
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+}
+
+body.dark-mode .account-settings-links .list-group-item.active {
+    background: #3a3a3a;
+    color: #ffffff;
+    border-left: 4px solid #7aa5d2;
+}
+
+/* Dark Mode - Avatar Selection */
+body.dark-mode .avatar-options img {
+    border: 2px solid #555;
+}
+
+body.dark-mode .selected-avatar {
+    border: 3px solid #7aa5d2;
+}
+
+/* Dark Mode - Avatar Hover */
+body.dark-mode .avatar-option:hover {
+    transform: scale(1.1);
+    border: 2px solid #7aa5d2;
+}

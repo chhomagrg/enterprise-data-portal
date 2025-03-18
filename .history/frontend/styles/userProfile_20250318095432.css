@@ -1,0 +1,169 @@
+/* General Styling */
+body {
+    background-color: #f4f7fc;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+/* Profile Container */
+.profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+/* Avatar */
+.avatar-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.avatar-container img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.avatar-options img {
+    width: 60px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+.avatar-option:hover {
+    transform: scale(1.1);
+    border: 2px solid #115a6a;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 14px;
+    background-color: #f8f9fa;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    border-color: #115a6a;
+    box-shadow: 0 0 10px rgba(38, 180, 255, 0.2);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-primary {
+    border-color: #115a6a;
+    background: transparent;
+    color: #115a6a;
+}
+
+.btn-outline-primary:hover {
+    background: #9900ff;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #115a6a;
+    color: #fff;
+}
+
+/* Update and Choose Avatar Buttons */
+.btn-update,
+.btn-avatar {
+    background-color: #115a6a;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    width: auto;
+    max-width: 200px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-update:hover,
+.btn-avatar:hover {
+    background-color: #9900ff;
+    color: #ffffff;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+footer {
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    font-size: 20px;
+    color: #333;
+    margin: 0 10px;
+}
+
+.social-icon:hover {
+    color: #115a6a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .avatar-container img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .btn,
+    .btn-update,
+    .btn-avatar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-icon {
+        margin: 5px 0;
+    }
+}

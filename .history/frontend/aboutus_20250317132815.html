@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Enterprise Data Access Portal</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="styles/aboutusstyle.css">
+   <link rel="stylesheet" href="styles/styles.css">  
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></head>
+   <link rel="stylesheet" href="styles/sidebar.css">
+
+
+   <style>
+        .sidebar, .hamburger-btn {
+            display: none;  /* Ensure both sidebar and hamburger button are hidden before JS runs */
+        }
+    </style>
+
+</head>
+
+<body>
+   <!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img id="navbarLogo" src="images/logo.png" alt="MAXX ENERGY Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+    </ul>
+
+    <!-- Login/Logout Button -->
+    <button id="loginBtn" class="btn">Login</button>
+    <button id="logoutBtn" class="btn" style="display: none;">Logout</button>
+        
+    <!-- Hamburger Menu -->
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>   
+</nav>
+
+
+
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar">
+    <!-- Sidebar Logo Section -->
+    <div class="sidebar-logo">
+        <a href="#" id="sidebarToggle">
+            <img id="sidebarLogo" src="images/logo-2.png" alt="MAXX ENERGY Logo">
+        </a>
+    </div>
+    <!-- Overview Section -->
+    <div class="overview-section">
+        <p class="sidebar-title">OVERVIEW</p>
+        <ul class="sidebar-links">
+            <li><a href="data.html" id="dataLink"><i class="fas fa-chart-bar"></i> <span>Dashboard</span></a></li>
+            <li><a href="userProfile.html"><i class="fas fa-user-edit"></i> <span>View Profile</span></a></li>
+        </ul>
+    </div>
+
+     <!-- Calendar Section -->
+   <div class="calendar-section">
+        <p class="sidebar-title">Calendar</p>
+        <div id="sidebarCalendar"></div>
+    </div>
+
+     <!-- Account Section -->
+     <div class="account-section">
+        <p class="sidebar-title">ACCOUNT</p>
+        <ul class="sidebar-links">
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Dark Mode</span>
+            </li>
+            <li><button id="logoutBtnSidebar" class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <img id="sidebarAvatar" class="avatar" src="images/default-avatar.png" alt="User Avatar">
+        <h3 id="sidebarUsername">User Name</h3>
+    </div>
+</aside>
+
+<!-- Login Modal -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="authTitle">Login</h2>
+        <p id="loginMessage" class="message"></p>
+        <form id="authForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" id="authSubmitBtn">Login</button>
+        </form>
+        <!-- Forgot Password Link -->
+        <p id="forgotPasswordLink"><a href="#" id="forgotPassword">Forgot Password?</a></p>
+
+        <p id="toggleAuth">Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
+    </div>
+</div>
+
+<!-- Registration Modal -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeRegister">&times;</span>
+        <h2>New User Registration</h2>
+
+        <!-- Message Box for Registration -->
+        <p class="error-text hidden" style="color: red;"></p> 
+
+        <form id="registrationForm">
+            <div id="formFields">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="registerPassword">Password</label> 
+                    <input type="password" id="registerPassword" required minlength="6">
+                </div>
+                <button type="submit" id="registerSubmitBtn" class="custom-btn">Register</button>
+            </div>
+        </form>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+    </div>
+</div>
+
+<script src="scripts/register.js" defer></script>
+<!-- Hero Section -->
+<section class="hero-section">
+    <img class="hero-image" src="images/Photo3.jpeg" alt="Hero Image">
+    <div class="container">     
+        <h1 class="fw-bold">Building a Sustainable Future with Data-Driven Energy Solutions</h1>
+        <p>Committed to transparency, innovation, and efficiency in renewable energy</p>
+    </div>
+</section>
+
+<!-- Who We Are Section -->
+<section class="who-we-are">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="fw-bold">Who We Are</h2>
+                <p>
+                    MAXX Energy provides real-time solar generation insights to help businesses and stakeholders make data-driven decisions.
+                    Our platform ensures secure, transparent, and accessible energy monitoring, allowing users to track trends, optimize performance, and drive sustainability.
+                </p>
+            </div>
+            <div class="col-6">
+                <img src="images/about-image.jpeg" alt="workers" class="responsive-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+    <div class="container">
+        <h2 class="fw-bold text-center">Our Commitment to Renewable Energy</h2>
+        <p class="lead text-center">
+            Empowering a sustainable future by providing real-time, data-driven insights into solar energy generation.
+        </p>
+        <div class="row mt-5 justify-content-center">
+            <div class="col-md-4">
+                <div class="mission-item">
+                    <h3 class="text-center">Innovative Solar Solutions</h3>
+                    <p class="text-center">Leading the way with cutting-edge solar technologies.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mission-item">
+                    <h3 class="text-center">Global Impact</h3>
+                    <p class="text-center">Making a difference worldwide with our renewable energy efforts.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mission-item">
+                    <h3 class="text-center">Sustainable Future</h3>
+                    <p class="text-center">Committed to creating a greener and more sustainable world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <h2>The People Behind MAXX Energy</h2>
+    <div class="team-container">
+        
+        <!-- Team Member 1 -->
+        <div class="team-member">
+            <img src="images/Chhoma-Gurung.jpg" alt="Chhoma Gurung" class="team-photo">
+            <h3>Chhoma Gurung</h3>
+            <p class="role">Software Developer</p>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-member">
+            <img src="images/Ilaha-Abbasova.jpg" alt="Ilaha Abbasova" class="team-photo">
+            <h3>Ilaha Abbasova</h3>
+            <p class="role">Software Developer</p>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-member">
+            <img src="images/Nurzida-Toigombaeva.jpg" alt="Nurzida Toigombaeva" class="team-photo">
+            <h3>Nurzida Toigombaeva</h3>
+            <p class="role">Software Developer</p>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-member">
+            <img src="images/Dayquon-Kelley2.jpg" alt="Dayquon Kelley" class="team-photo">
+            <h3>Dayquon Kelley</h3>
+            <p class="role">Software Developer</p>
+        </div>
+
+        <!-- Team Member 5 -->
+        <div class="team-member">
+            <img src="images/Ethan-Bastidas.jpg" alt="Ethan Bastidas" class="team-photo">
+            <h3>Ethan Bastidas</h3>
+            <p class="role">Data Analyst</p>
+        </div>
+
+        <!-- Team Member 6 -->
+        <div class="team-member">
+            <img src="images/Samiah-Smith.jpg" alt="Samiah Smith" class="team-photo">
+            <h3>Samiah Smith</h3>
+            <p class="role">IT Support</p>
+        </div>
+
+        <!-- Team Member 7 -->
+        <div class="team-member">
+            <img src="images/Soledad-Vaquero.jpg" alt="Soledad Vaquero" class="team-photo">
+            <h3>Soledad Vaquero</h3>
+            <p class="role">Software Developer</p>
+        </div>
+
+        <!-- Team Member 8 -->
+        <div class="team-member">
+            <img src="images/Sachorra-Douglas.jpg" alt="Sachorra Douglas" class="team-photo">
+            <h3>Sachorra Douglas</h3>
+            <p class="role">Software Developer</p>
+        </div>
+
+        <!-- Team Member 9 -->
+        <div class="team-member">
+            <img src="images/Taha-Nayyar.png" alt="Taha Nayyar" class="team-photo">
+            <h3>Taha Nayyar</h3>
+            <p class="role">Data Engineer</p>
+        </div>
+
+        <!-- Team Member 10 -->
+        <div class="team-member">
+            <img src="images/Nhan-Huynh.jpg" alt="Nhan Huynh" class="team-photo">
+            <h3>Nhan Huynh</h3>
+            <p class="role">Data Engineer</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Company History Section -->
+<section class="company-history">
+    <div class="container">
+        <h2 class="fw-bold">Our Journey</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="history-text">
+                    <ul class="timeline">
+                        <li class="timeline-item">
+                            <div class="timeline-icon">
+                                <img src="images/office-building-icon.png" alt="Founded Icon" /> 
+                            </div>
+                            <h5>2020 – Founded</h5>
+                            <p class="timeline-content">Established to provide real-time solar energy insights.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon">
+                                <img src="images/rocket-launch-icon.png" alt="Platform Launch Icon" /> 
+                           </div>
+                            <h5>2021 – Platform Launch</h5>
+                            <p class="timeline-content">Released solar monitoring dashboard.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon">
+                                <img src="images/trophy-icon.png" alt="Industry Growth Icon" /> 
+                            </div>
+                            <h5>2022 – Industry Growth</h5>
+                            <p class="timeline-content">Partnered with solar energy providers, won an innovation award.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon">
+                                <img src="images/globe-icon.png" alt="Global Expansion Icon" /> 
+                            </div>
+                            <h5>2023 – AI & Global Expansion</h5>
+                            <p class="timeline-content">Launched AI-driven analytics, expanded internationally.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon">
+                                <img src="images/shield-icon.png" alt="Security Icon" />
+                            </div>
+                            <h5>2024 – Enhanced Security & Features</h5>
+                            <p class="timeline-content">Improved security, added custom reporting tools.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Get in touch</h2>
+    <div class="contact-wrapper">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <form id="contact-form" action="https://formspree.io/f/xzzdlbgn" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+ <!-- Contact Information Card -->
+ <div class="contact-info">
+    <div class="contact-card">
+      <div class="contact-item">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Address</h3>
+          <p>123 Main Street,<br>NY, USA</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Phone</h3>
+          <p>(123) 456-7890</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Email</h3>
+          <p>support@maxxenergy.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-clock" aria-hidden="true"></i>
+        <div class="contact-details">
+          <h3>Business Hours</h3>
+          <p>Mon - Fri: 9:00 AM - 5:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</section>
+
+<footer>
+   <div class="footer-container">
+       <div class="footer-left">
+           <a href="privacypolicy.html">Privacy Policy</a> |
+           <a href="#contact">Contact Us</a>
+       </div>
+       <div class="footer-right">
+           <a href="https://www.linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+           <a href="https://www.facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+           <a href="https://www.instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+       </div>
+   </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="scripts/contact.js" defer></script>
+<script src="scripts/auth.js"></script>
+<script src="scripts/script.js" defer></script>
+<script src="scripts/aboutus.js" defer></script>
+<script src="//code.tidio.co/pkunvsvycx7yt48uj2pce4avlqbf1ycj.js" async></script>
+
+</body>
+</html>
